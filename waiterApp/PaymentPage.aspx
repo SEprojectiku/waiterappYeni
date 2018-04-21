@@ -23,7 +23,7 @@
 
       <div class="paypal__subheader-wrapper">
         <div class="paypal__subheader">
-          <h1 class="paypal__username">Sefa, Hi</h1>
+          <h1 class="paypal__username"> Hi</h1>
           <span class="paypal__help-text">you've purchased in our store:</span>
         </div>
       </div>
