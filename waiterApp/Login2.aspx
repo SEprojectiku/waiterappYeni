@@ -1,5 +1,5 @@
 ﻿<%--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="WaiterWebSite.login" %>--%>
-<%@ Page  Language="C#"  AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="waiterApp.login" %>
+<%@ Page  Language="C#"  AutoEventWireup="true" CodeBehind="Login2.aspx.cs" Inherits="waiterApp.Login2" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -185,4 +185,5 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
 

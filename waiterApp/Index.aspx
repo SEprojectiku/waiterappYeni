@@ -42,7 +42,7 @@
          <div class="btn-group mt-1 mb-3" role="group" aria-label="Basic example">
              <asp:Button runat="server" CssClass="btn btn-primary btn-lg" PostBackUrl="Login.aspx" Text="Login" />
             
-            <a class="btn btn-light btn-lg" href="login.aspx">Sign Up</a>   
+            <asp:Button  runat="server" CssClass="btn btn-light btn-lg" PostBackUrl="~/signup.aspx" Text="Sign Up"/>
         <!-- butonu anchorla değiştirebiliyourz burda hrefi aşağıdaki spekersa hedefledik-->        
           </div></div>
 		<button class="loginBtn loginBtn--facebook">

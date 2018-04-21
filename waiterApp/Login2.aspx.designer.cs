@@ -10,69 +10,69 @@
 namespace waiterApp {
     
     
-    public partial class BusinessHome {
+    public partial class Login2 {
         
         /// <summary>
-        /// form1 control.
+        /// emailBusiness control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.TextBox emailBusiness;
         
         /// <summary>
-        /// TextBox1 control.
+        /// passBus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox passBus;
         
         /// <summary>
-        /// SearchButton control.
+        /// busslogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton SearchButton;
+        protected global::System.Web.UI.WebControls.Button busslogin;
         
         /// <summary>
-        /// navbarname control.
+        /// emailLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label navbarname;
+        protected global::System.Web.UI.WebControls.TextBox emailLogin;
         
         /// <summary>
-        /// myName control.
+        /// passwordLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label myName;
+        protected global::System.Web.UI.WebControls.TextBox passwordLogin;
         
         /// <summary>
-        /// DataList1 control.
+        /// Login control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater DataList1;
+        protected global::System.Web.UI.WebControls.Button Login;
         
         /// <summary>
-        /// Button1 control.
+        /// err_lbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Label err_lbl;
     }
 }

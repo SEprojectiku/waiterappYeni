@@ -5,15 +5,20 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 namespace waiterApp
 {
     public partial class BusinessHome : System.Web.UI.Page
     {
         fillDropDown filldropdownlist = new fillDropDown();
         PagedDataSource pagesource;
+        static string connectionString = ConfigurationManager.ConnectionStrings["constring"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataSet ds = filldropdownlist.listReservations(1, 1); // 1 yerine session dan gelen veri yazolacak -- seçilen restoranın numarası
+            DataSet ds = filldropdownlist.listReservations(Convert.ToInt32(Session["bID"].ToString()), 1); 
             pagesource = new PagedDataSource();
             pagesource.DataSource = ds.Tables[0].DefaultView;
             pagesource.PageSize = 10;
@@ -21,6 +26,19 @@ namespace waiterApp
 
             DataList1.DataSource = pagesource;
             DataList1.DataBind();
+
+            SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
+            query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = Session["bID"].ToString(); // sessiondan gelen kullanıcı id si yazılacak
+            connection.Open();
+            SqlDataReader dr = query.ExecuteReader();
+            if (dr.Read())
+            {
+                myName.Text = dr["bName"].ToString();
+                navbarname.Text = dr["bName"].ToString();
+
+            }
+            connection.Close();
+
         }
 
         protected void Button1_Click(object sender, EventArgs e)

@@ -11,16 +11,29 @@ namespace waiterApp
 {
   
     public partial class BusinessViewTables : System.Web.UI.Page
-    {  string connectionString = ConfigurationManager.ConnectionStrings["constring"].ConnectionString;
-    fillDropDown filldropdownlist = new fillDropDown();
+    { static string connectionString = ConfigurationManager.ConnectionStrings["constring"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
+        fillDropDown filldropdownlist = new fillDropDown();
     PagedDataSource pagesource;
         protected void Page_Load(object sender, EventArgs e)
         {
             fill();
+
+            SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
+            query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = Session["bID"].ToString(); // sessiondan gelen kullanıcı id si yazılacak
+            connection.Open();
+            SqlDataReader dr = query.ExecuteReader();
+            if (dr.Read())
+            {
+                myName.Text = dr["bName"].ToString();
+                navbarname.Text = dr["bName"].ToString();
+
+            }
+            connection.Close();
         }
         private void fill()
         {
-            DataSet ds = filldropdownlist.listAlltables(1); // 1 yerine session dan gelen veri yazolacak -- seçilen restoranın numarası
+            DataSet ds = filldropdownlist.listAlltables(Convert.ToInt32(Session["bID"].ToString())); // 1 yerine session dan gelen veri yazolacak -- seçilen restoranın numarası
             pagesource = new PagedDataSource();
             pagesource.DataSource = ds.Tables[0].DefaultView;
             pagesource.PageSize = 10;

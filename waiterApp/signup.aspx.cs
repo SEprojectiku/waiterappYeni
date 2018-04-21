@@ -48,7 +48,7 @@ namespace waiterApp
                 day.SelectedItem.Text = "Day";
                 for (int i = 0; i <= 12; i++)
                     mount.Items.Insert(i, new ListItem(i.ToString(), i.ToString()));
-                mount.SelectedItem.Text = "Mount";
+                mount.SelectedItem.Text = "Month";
                 for (int i = 1940; i <= 2018; i++)
                     year.Items.Insert(i-1940, new ListItem(i.ToString(), i.ToString()));
                 year.SelectedItem.Text = "Year";

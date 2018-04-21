@@ -180,6 +180,22 @@ string connectionString = ConfigurationManager.ConnectionStrings["constring"].Co
 
             con.Close();
         }
+        public void insertPayment(int bID, int userid, decimal total, int orderid, int confirm)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("insertPayment", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@bid", bID));
+            cmd.Parameters.Add(new SqlParameter("@userID", userid));
+            cmd.Parameters.Add(new SqlParameter("@orderid", orderid));
+            cmd.Parameters.Add(new SqlParameter("@total", total));
+            cmd.Parameters.Add(new SqlParameter("@confirm", confirm));
+            cmd.ExecuteNonQuery();
+
+            con.Close();
+        }
         public void CancelRes(int resID)
         {
             SqlConnection con = new SqlConnection(connectionString);

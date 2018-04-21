@@ -274,9 +274,6 @@ namespace waiterApp
             con.Close();
             return dt;
 
-
-
-
         }
 
         public DataTable getBusinessList(string Cityid,string searchbox)
@@ -544,6 +541,60 @@ namespace waiterApp
         */
 
 
+        public DataSet getOrderDetails(int orderid)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+            using (var cmd = new SqlCommand("getOrderDetails", con))
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@orderid", orderid));
+                da.Fill(ds);
+            }
+            con.Close();
+            return ds;
+
+        }
+
+        public string getOrderTotal(int orderid)
+        {
+            string total = "";
+            SqlConnection con = new SqlConnection(connectionString);
+
+            SqlCommand query = new SqlCommand("getOrderTotal", con);
+            query.Parameters.Add("@orderid", SqlDbType.NVarChar).Value = orderid; // sessiondan gelen kullanıcı id si yazılacak
+            con.Open();
+            query.CommandType = CommandType.StoredProcedure;
+            SqlDataReader dr = query.ExecuteReader();
+            if (dr.Read())
+            {
+               total = dr["total"].ToString();
+
+            }
+            con.Close();
+            return total;
+        }
+
+        public string getOrderDate(int orderid)
+        {
+            string date = "";
+            SqlConnection con = new SqlConnection(connectionString);
+
+            SqlCommand query = new SqlCommand("getOrderDate", con);
+            query.Parameters.Add("@orderid", SqlDbType.NVarChar).Value = orderid; // sessiondan gelen kullanıcı id si yazılacak
+            con.Open();
+            query.CommandType = CommandType.StoredProcedure;
+            SqlDataReader dr = query.ExecuteReader();
+            if (dr.Read())
+            {
+                date = dr["dates"].ToString();
+
+            }
+            con.Close();
+            return date;
+        }
 
 
     }

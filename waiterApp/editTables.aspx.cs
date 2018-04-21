@@ -11,13 +11,25 @@ namespace waiterApp
 {
     public partial class editTables : System.Web.UI.Page
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["constring"].ConnectionString;
+        static string connectionString = ConfigurationManager.ConnectionStrings["constring"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
         fillDropDown fdp = new fillDropDown();
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-                Repeater1.DataSource = fdp.tableTypes(1);
+            SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
+            query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = Session["bID"].ToString(); // sessiondan gelen kullanıcı id si yazılacak
+            connection.Open();
+            SqlDataReader dr = query.ExecuteReader();
+            if (dr.Read())
+            {
+                myName.Text = dr["bName"].ToString();
+                navbarname.Text = dr["bName"].ToString();
+
+            }
+            connection.Close();
+
+            Repeater1.DataSource = fdp.tableTypes(1);
                 Repeater1.DataBind();
 
         }

@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace waiterApp
 {
-    public partial class login : System.Web.UI.Page
+    public partial class Login2 : System.Web.UI.Page
     {
         static string connectionString = ConfigurationManager.ConnectionStrings["constring"].ConnectionString;
         SqlConnection connection = new SqlConnection(connectionString);
@@ -49,7 +49,7 @@ namespace waiterApp
             }
             else
             {
-                
+
                 err_lbl.Visible = true;
             }
             dr.Close();
@@ -85,7 +85,7 @@ namespace waiterApp
             }
             else
             {
-                
+
                 err_lbl.Visible = true;
             }
             dr.Close();
