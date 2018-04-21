@@ -1,0 +1,31 @@
+﻿div.media :hover {
+    background: #F0F8FF;
+}
+
+span.badge {
+    color: green;
+    font-size: 17px;
+}
+
+nav.navbar {
+    position: fixed;
+    top: 0;
+    width: 90%;
+    margin-left: 2%;
+}
+
+.mt-3, .my-3 {
+    margin-top: 5rem !important;
+}
+
+strong.navbar-item {
+    font-size: 15px;
+}
+
+div.table-responsive {
+    margin-right: 2%;
+}
+
+small.mt-3 {
+    margin-top: 0%;
+}

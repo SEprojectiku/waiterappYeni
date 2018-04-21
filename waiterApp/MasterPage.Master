@@ -1,0 +1,105 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="waiterApp.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%--<script src="https://use.fontawesome.com/be4b15a02f.js"></script>--%>
+    <link rel="stylesheet" href="StyleSheet.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/css.css">
+</head>
+   <body>
+    <form runat="server" >
+        
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="Index.aspx">Waiter</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item ">
+                <a class="nav-link" href="Index.aspx">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Categories
+                </a>
+                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+              
+            </ul>
+
+            <div class="form-inline my-2 my-lg-0">
+                
+                
+                <%--<asp:Button runat="server" ID="s" OnClick="s_Click" CausesValidation="false" />--%>
+               <asp:Button runat="server" CssClass="btn btn-danger mr-1" ID="register_btn"  Text="Register Now!"/>
+                <asp:Button runat="server" CssClass="btn btn-danger mr-1"  ID="login_btn" Text="Log In" /> 
+                <asp:Button runat="server" CssClass="btn btn-success m-1" PostBackUrl="~/Update.aspx" Text="Add a book" ID="updt" Visible="false"/>
+                
+                
+                <%--<button type="button" class="btn btn-danger mr-1" 
+            data-toggle="modal" data-target="#register" >Register now!</button>--%>
+                <asp:TextBox runat="server" ID="search_txt" CssClass="form-control mr-sm-2" placeholder="Enter a Book or Author"></asp:TextBox>
+                <asp:Button runat="server" ID="search_btn"  CssClass="btn btn-primary my-2 my-sm-0" Text="Search"/>
+              <%--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+              <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>--%>
+            </div>
+          </div>
+        </div>
+      </nav>
+        
+       <div class="container mt-4"><br /></div>  
+          
+       <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"> 
+
+       </asp:ContentPlaceHolder>
+          
+       <footer class="footer">
+       <div class="container" >
+           <hr />
+          <div class="row py-3">
+              <div class="col-md-7">
+                  <ul class="nav">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#"></a>
+                    </li>
+                   
+                  </ul>
+              </div>
+              <div class="col-md-5 text-md-right ">
+                <small>&copy; 2018 | fshf</small>
+              </div>
+            </div> <!--//footer -->
+        </div>
+       </footer>
+        
+       
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  </form>
+   </body>
+</html>
+

@@ -1,0 +1,43 @@
+﻿span.badge {
+    color: green;
+    font-size: 15px;
+    background-color: white;
+}
+
+
+nav.navbar {
+    position: fixed;
+    top: 0;
+    width: 90%;
+    margin-left: 2%;
+}
+
+.mt-3, .my-3 {
+    margin-top: 5rem !important;
+}
+
+strong.navbar-item {
+    font-size: 15px;
+}
+
+div.table-responsive {
+    margin-right: 2%;
+}
+
+small.mt-3 {
+    margin-top: 0%;
+}
+
+
+.btn-radio {
+    width: 100%;
+}
+
+.img-radio {
+    opacity: 0.5;
+    margin-bottom: 5px;
+}
+
+.space-20 {
+    margin-top: 20px;
+}

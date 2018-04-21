@@ -1,2 +1,2 @@
-# waiterappYeni
-calisan son verion
+# waiterapp
+SE project
