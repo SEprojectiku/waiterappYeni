@@ -209,5 +209,51 @@ string connectionString = ConfigurationManager.ConnectionStrings["constring"].Co
 
             con.Close();
         }
+
+        public void insertOrder(int bID, int table, int userid)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("insertOrder", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@bid", bID));
+            cmd.Parameters.Add(new SqlParameter("@userid", userid));
+            cmd.Parameters.Add(new SqlParameter("@tableid", table));
+
+            cmd.ExecuteNonQuery();
+
+            con.Close();
+        }
+
+        public void insertOrderDetails(int orderid, ArrayList foodid, ArrayList piece, int iteration)
+        {
+            int[] piecearr = new int[iteration];
+            int[] foodarr = new int[iteration];
+
+
+            foodid.CopyTo(foodarr);
+            piece.CopyTo(piecearr);
+
+
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+            for (int j = 0; j < iteration; j++)
+            {
+                
+                    SqlCommand cmd = new SqlCommand("insertOrderDetails", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@orderid", orderid));
+                    cmd.Parameters.Add(new SqlParameter("@foodid", foodarr[j]));
+                    cmd.Parameters.Add(new SqlParameter("@piece", piecearr[j]));
+                    cmd.Parameters.Add(new SqlParameter("@orderdesc", " "));
+                    cmd.ExecuteNonQuery();
+             
+            }
+
+            con.Close();
+        }
+
+
     }
 }

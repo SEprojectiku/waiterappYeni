@@ -18,7 +18,7 @@ namespace waiterApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataSet ds = filldropdownlist.listReservations(Convert.ToInt32(Session["bID"].ToString()), 1); 
+            DataSet ds = filldropdownlist.listReservations(1, 1); 
             pagesource = new PagedDataSource();
             pagesource.DataSource = ds.Tables[0].DefaultView;
             pagesource.PageSize = 10;
@@ -28,7 +28,7 @@ namespace waiterApp
             DataList1.DataBind();
 
             SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
-            query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = Session["bID"].ToString(); // sessiondan gelen kullanıcı id si yazılacak
+            query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = 1; // sessiondan gelen kullanıcı id si yazılacak
             connection.Open();
             SqlDataReader dr = query.ExecuteReader();
             if (dr.Read())

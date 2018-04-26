@@ -38,7 +38,7 @@ namespace waiterApp
                 countrylist.DataBind();
 
                 SqlCommand query2 = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
-                query2.Parameters.Add("@bid", SqlDbType.NVarChar).Value = Session["bID"].ToString(); // sessiondan gelen kullanıcı id si yazılacak
+                query2.Parameters.Add("@bid", SqlDbType.NVarChar).Value = 1; // sessiondan gelen kullanıcı id si yazılacak
                 connection.Open();
                 SqlDataReader dr2 = query2.ExecuteReader();
                 if (dr2.Read())
@@ -54,7 +54,7 @@ namespace waiterApp
 
                 SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
 
-                query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = Session["bID"].ToString();
+                query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = 1;
 
 
                 connection.Open();
