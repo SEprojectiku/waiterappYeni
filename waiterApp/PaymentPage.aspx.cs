@@ -26,7 +26,7 @@ namespace waiterApp
 
         protected void paybutton_Click(object sender, EventArgs e)
         {
-            insert.insertPayment(2, 1, Convert.ToDecimal(Total.Text), 1, 1);
+            insert.insertPayment(Convert.ToInt32(Session["bID"]), Convert.ToInt32(Session["userID"]), Convert.ToDecimal(Total.Text), Convert.ToInt32(Session["orderID"]), 1); //şimdilik direk confirm yapıyor, business için confirm sayfası yok
 
             connection.Open();
             SqlCommand delete = new SqlCommand("delete from orders.orderDetails where orderID = " + Session["orderID"].ToString(), connection);
