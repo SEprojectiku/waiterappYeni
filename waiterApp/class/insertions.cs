@@ -134,6 +134,7 @@ string connectionString = ConfigurationManager.ConnectionStrings["constring"].Co
             cmd.Parameters.Add(new SqlParameter("@time", time));
             cmd.Parameters.Add(new SqlParameter("@message", message));
             cmd.ExecuteNonQuery();
+                HttpContext.Current.Response.Redirect("CutomerProfilePage.aspx", true);
             }
             catch(Exception e)
             {

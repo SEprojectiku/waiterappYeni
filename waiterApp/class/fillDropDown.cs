@@ -118,7 +118,7 @@ namespace waiterApp
                 da.Fill(dt);}
                 catch(Exception e)
                 {
-                    HttpContext.Current.Response.Redirect("CutomerProfilePage.aspx", true);
+                   
                 }
                 
             }

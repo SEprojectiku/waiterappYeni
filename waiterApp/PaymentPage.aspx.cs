@@ -33,6 +33,8 @@ namespace waiterApp
             delete.ExecuteNonQuery();
             SqlCommand delete2 = new SqlCommand("update orders.orders set orderStatus = 0", connection);
             delete2.ExecuteNonQuery();
+            SqlCommand unsettable = new SqlCommand("update business.tableinfo set isAvailable = 1", connection);
+            unsettable.ExecuteNonQuery();
             connection.Close();
         }
     }

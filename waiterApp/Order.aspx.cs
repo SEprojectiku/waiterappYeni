@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Collections;
 
+
 namespace waiterApp
 {
     public partial class Order : System.Web.UI.Page
@@ -23,7 +24,19 @@ namespace waiterApp
         {
             if(!IsPostBack)
             {
-                myName.Text = Session["bName"].ToString();
+                SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
+                query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = Session["bID"].ToString(); // sessiondan gelen kullanici id si yazilacak
+                connection.Open();
+                SqlDataReader dr2 = query.ExecuteReader();
+                if (dr2.Read())
+                {
+                    myName.Text = dr2["bName"].ToString();
+                 //   navbarname.Text = dr2["bName"].ToString();
+
+                }
+                connection.Close();
+
+              //  myName.Text = Session["bName"].ToString();
                 navbarname.Text = Session["userName"].ToString();
                 Repeater2.DataSource = fdp.listActiveMenuitems(1);
                 Repeater2.DataBind();
@@ -82,7 +95,7 @@ namespace waiterApp
             int toplam = j;
             insert.insertOrderDetails(orderid, itemlist, quantitylist, toplam);
 
-
+            Server.Transfer("CutomerProfilePage.aspx", true);
         }
     }
 }

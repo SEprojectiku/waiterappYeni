@@ -41,7 +41,7 @@ namespace waiterApp
                 
                 Server.Transfer("CutomerProfilePage.aspx", true);
             }
-            
+            Server.Transfer("CutomerProfilePage.aspx", true);
         }
         
         public void Calendar1_SelectionChanged(object sender, EventArgs e)
