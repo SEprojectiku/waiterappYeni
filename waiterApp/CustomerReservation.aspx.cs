@@ -32,7 +32,7 @@ namespace waiterApp
         {
             string mesaj = messageText.Text.ToString();
             insert.insertReservation(Convert.ToInt32(Session["userID"].ToString()), Convert.ToInt32(tablename.SelectedValue), Session["date1"].ToString(), Convert.ToInt32(timeList.SelectedValue), mesaj);
-
+            Server.Transfer("CutomerProfilePage.aspx", true);
         }
         
         public void Calendar1_SelectionChanged(object sender, EventArgs e)
