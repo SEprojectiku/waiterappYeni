@@ -31,8 +31,17 @@ namespace waiterApp
         protected void Button1_Click(object sender, EventArgs e)
         {
             string mesaj = messageText.Text.ToString();
+            try
+            {
             insert.insertReservation(Convert.ToInt32(Session["userID"].ToString()), Convert.ToInt32(tablename.SelectedValue), Session["date1"].ToString(), Convert.ToInt32(timeList.SelectedValue), mesaj);
-            Server.Transfer("CutomerProfilePage.aspx", true);
+                Server.Transfer("CutomerProfilePage.aspx", true);
+            }
+            catch(Exception a)
+            {
+                
+                Server.Transfer("CutomerProfilePage.aspx", true);
+            }
+            
         }
         
         public void Calendar1_SelectionChanged(object sender, EventArgs e)

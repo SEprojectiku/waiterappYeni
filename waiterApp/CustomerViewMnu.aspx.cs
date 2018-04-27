@@ -6,11 +6,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data;
 namespace waiterApp
 {
     public partial class CustomerViewMnu : System.Web.UI.Page
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["constring"].ConnectionString;
+        static string connectionString = ConfigurationManager.ConnectionStrings["constring"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
         fillDropDown fdp = new fillDropDown();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -20,8 +22,18 @@ namespace waiterApp
               //  int menuid = Convert.ToInt32(Session["menuID"].ToString());
                 Repeater1.DataSource = fdp.listActiveMenuitemsCategories(Convert.ToInt32(Session["bID"].ToString())); //business id girilecek
                 Repeater1.DataBind();
+                SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
+                query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = Session["bID"].ToString(); // sessiondan gelen kullanici id si yazilacak
+                connection.Open();
+                SqlDataReader dr = query.ExecuteReader();
+                if (dr.Read())
+                {
+                    myName.Text = dr["bName"].ToString();
+                 //   navbarname.Text = dr["bName"].ToString();
 
-                myName.Text = Session["bName"].ToString();
+                }
+                connection.Close();
+                
                 navbarname.Text = Session["userName"].ToString();
 
             }

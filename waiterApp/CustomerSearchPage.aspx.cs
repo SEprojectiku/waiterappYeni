@@ -33,19 +33,10 @@ namespace waiterApp
                 Panel2.Visible = false;
 
 
-                SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
-                query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = Session["bID"].ToString(); // sessiondan gelen kullanici id si yazilacak
-                connection.Open();
-                SqlDataReader dr = query.ExecuteReader();
-                if (dr.Read())
-                {
-                    //myName.Text = dr["bName"].ToString();
-                    navbarname.Text = dr["bName"].ToString();
-
-                }
-                connection.Close();
+              
 
                 myName.Text = Session["userID"].ToString();
+                navbarname.Text = Session["userName"].ToString();
             }
         }
 

@@ -103,20 +103,24 @@ namespace waiterApp
         }
         public DataTable listavaliableTables(int bid, int time, string date1, string date2, int type)
         {
-
+            
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
             DataTable dt = new DataTable();
             using (var cmd = new SqlCommand("listAvaliableTables", con))
             using (var da = new SqlDataAdapter(cmd))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
+            {try { cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@bid", bid));
                 cmd.Parameters.Add(new SqlParameter("@date1", date1));
                 cmd.Parameters.Add(new SqlParameter("@date2", date2));
                 cmd.Parameters.Add(new SqlParameter("@time", time));
                 cmd.Parameters.Add(new SqlParameter("@type", type));
-                da.Fill(dt);
+                da.Fill(dt);}
+                catch(Exception e)
+                {
+                    HttpContext.Current.Response.Redirect("CutomerProfilePage.aspx", true);
+                }
+                
             }
            con.Close();
             return dt;

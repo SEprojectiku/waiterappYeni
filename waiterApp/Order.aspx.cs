@@ -34,7 +34,7 @@ namespace waiterApp
             }
          int i = 0;
              connection.Open();
-            SqlCommand cmd = new SqlCommand("select * from [business].[menu] m inner join[business].[menudetails] md on m.menuID = md.menuID where bID = '"+Session["bID"].ToString()+"' and isMenuOnline = 1 and md.visibility = 1", connection); 
+            SqlCommand cmd = new SqlCommand("select * from [business].[menu] m inner join[business].[menudetails] md on m.menuID = md.menuID where bID = '"+Session["bID"].ToString()+"' and m.isMenuOnline = 1 and md.visibility = 1", connection); 
             SqlDataReader dr = cmd.ExecuteReader();
             while(dr.Read())
             {
@@ -67,7 +67,7 @@ namespace waiterApp
             }
 
 
-            insert.insertOrder(1, 8, 1);
+            insert.insertOrder(Convert.ToInt32(Session["bID"].ToString()), Convert.ToInt32(Session["tableID"].ToString()), Convert.ToInt32(Session["userID"].ToString()));
             int orderid = 1;
 
             connection.Open();

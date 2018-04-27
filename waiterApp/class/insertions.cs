@@ -137,7 +137,7 @@ string connectionString = ConfigurationManager.ConnectionStrings["constring"].Co
             }
             catch(Exception e)
             {
-
+                HttpContext.Current.Response.Redirect("CutomerProfilePage.aspx", true);
             }
             con.Close();
         }
