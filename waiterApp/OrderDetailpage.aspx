@@ -97,7 +97,8 @@
 
          </div>
           </ItemTemplate></asp:Repeater>
- </div> 
+ </div>
+        <asp:Button ID="confirmbutton" runat="server" Text="Confirm Order" OnClick="confirmbutton_Click"/>
         <asp:Button ID="cancelbutton" runat="server" Text="Cancel Order" OnClick="cancelbutton_Click"/>
 
      

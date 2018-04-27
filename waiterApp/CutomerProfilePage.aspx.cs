@@ -20,7 +20,7 @@ namespace waiterApp
         {
             if(!IsPostBack)
             {
- DataTable dt = filldropdownlist.currency();
+            DataTable dt = filldropdownlist.currency();
             currencylist.DataTextField = "currency";
             currencylist.DataValueField = "id";
             currencylist.DataSource = dt;
@@ -45,8 +45,33 @@ namespace waiterApp
             }
             connection.Close();
 
+                //for active orders
 
-            DataSet ds = filldropdownlist.listComingResforcustomer(Convert.ToInt32(Session["userID"].ToString())); // 1 yerine session dan gelen veri yazolacak -- seçilen restoranın numarası
+                SqlCommand query2 = new SqlCommand("select b.bName, o.orderDate, o.orderID, sum(md.price * od.piece) as total from[orders].[orders] o inner join[business].[Businessinfo] b on b.bID = o.bID inner join[orders].[orderDetails] od on od.orderID = o.orderID inner join[business].[menudetails] md on md.foodbeveragesID = od.foodbeveragesID where o.userID = @uid and o.orderStatus = 1 and o.isConfirmed = 1 group by b.bName, o.orderDate, o.orderID", connection);
+                query2.Parameters.Add("@uid", SqlDbType.NVarChar).Value = Session["userID"].ToString(); // sessiondan gelen kullanıcı id si yazılacak
+                connection.Open();
+                SqlDataReader dr2 = query2.ExecuteReader();
+                if (dr2.Read())
+                {
+                    bname.Text = dr2["bName"].ToString();
+                    date.Text = dr2["orderDate"].ToString();
+                    orderid.Text = dr2["orderID"].ToString();
+                    total.Text = dr2["total"].ToString();
+                    paybutton.CommandArgument = dr2["orderID"].ToString();
+
+                    bname.Visible = true;
+                    date.Visible = true;
+                    orderid.Visible = true;
+                    total.Visible = true;
+                    paybutton.Visible = true;
+
+                }
+                connection.Close();
+
+                //end active orders
+
+
+                DataSet ds = filldropdownlist.listComingResforcustomer(Convert.ToInt32(Session["userID"].ToString())); // 1 yerine session dan gelen veri yazolacak -- seçilen restoranın numarası
             pagesource = new PagedDataSource();
             pagesource.DataSource = ds.Tables[0].DefaultView;
             pagesource.PageSize = 10;
@@ -83,6 +108,13 @@ namespace waiterApp
             update.Parameters.Add("@lang", SqlDbType.NVarChar).Value = langlist.SelectedValue.ToString();
             update.ExecuteNonQuery();
             connection.Close();
+        }
+
+        protected void paybutton_Click(object sender, EventArgs e)
+        {
+            Button buton1 = (Button)sender;
+            Session["orderID"] = buton1.CommandArgument.ToString();
+            Server.Transfer("PaymentPage.aspx", true);
         }
     }
 }

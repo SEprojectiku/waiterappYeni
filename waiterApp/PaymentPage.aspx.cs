@@ -17,11 +17,11 @@ namespace waiterApp
         insertions insert = new insertions();
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataList1.DataSource = fdp.getOrderDetails(2); // sessiondan gelen orderid yazılacak
+            DataList1.DataSource = fdp.getOrderDetails(Convert.ToInt32(Session["orderID"].ToString())); // sessiondan gelen orderid yazılacak
             DataList1.DataBind();
 
-            Total.Text = fdp.getOrderTotal(2);
-            orderdate.Text = fdp.getOrderDate(2);
+            Total.Text = fdp.getOrderTotal(Convert.ToInt32(Session["orderID"].ToString()));
+            orderdate.Text = fdp.getOrderDate(Convert.ToInt32(Session["orderID"].ToString()));
         }
 
         protected void paybutton_Click(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace waiterApp
             insert.insertPayment(2, 1, Convert.ToDecimal(Total.Text), 1, 1);
 
             connection.Open();
-            SqlCommand delete = new SqlCommand("delete from orders.orderDetails where orderID = 2", connection);
+            SqlCommand delete = new SqlCommand("delete from orders.orderDetails where orderID = " + Session["orderID"].ToString(), connection);
             delete.ExecuteNonQuery();
             SqlCommand delete2 = new SqlCommand("update orders.orders set orderStatus = 0", connection);
             delete2.ExecuteNonQuery();

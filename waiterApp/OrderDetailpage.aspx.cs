@@ -40,5 +40,13 @@ namespace waiterApp
         {
             Server.Transfer("reasonPage.aspx", true);
         }
+
+        protected void confirmbutton_Click(object sender, EventArgs e)
+        {
+            connection.Open();
+            SqlCommand update = new SqlCommand("update orders.orders set isConfirmed = 1 where orderID = " + Session["orderID"].ToString(), connection);
+            update.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }

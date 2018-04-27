@@ -82,12 +82,28 @@
     </asp:DropDownList>
   <div class="panel-group">
     <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Active Order</h3>
+        </div>
+        <div class="panel-body">
+             <tr>
+        <td ><asp:Label ID="bname" runat="server" Text="" Visible="false"></asp:Label></td>
+        <td  ><asp:Label ID="date" runat="server" Text="" Visible="false"></asp:Label></td>
+        <td ><asp:Label ID="orderid" runat="server" Text="" Visible="false"></asp:Label></td>
+        <td><asp:Label ID="total" runat="server" Text="" Visible="false"></asp:Label></td>
+        <td>  <asp:Button ID="paybutton" runat="server" Text="Payment" OnClick="paybutton_Click" Visible="false"/></td>
+     </tr>
+        </div>
       <div class="panel-heading">
           <h3>Recent Orders</h3>
 
       </div>
       <div class="panel-body">
           <%--orderlar buraya yazılacak--%>
+
+
+     
+    
         
  </div>
     </div>
