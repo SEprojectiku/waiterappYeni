@@ -33,7 +33,7 @@ namespace waiterApp
             langlist.DataBind();
 
             SqlCommand query = new SqlCommand("SELECT * FROM users.userinfo WHERE userID=@uid", connection);
-            query.Parameters.Add("@uid", SqlDbType.NVarChar).Value = "1"; // sessiondan gelen kullanıcı id si yazılacak
+            query.Parameters.Add("@uid", SqlDbType.NVarChar).Value = Session["userID"].ToString(); // sessiondan gelen kullanıcı id si yazılacak
             connection.Open();
             SqlDataReader dr = query.ExecuteReader();
             if (dr.Read())
@@ -46,7 +46,7 @@ namespace waiterApp
             connection.Close();
 
 
-            DataSet ds = filldropdownlist.listComingResforcustomer(1); // 1 yerine session dan gelen veri yazolacak -- seçilen restoranın numarası
+            DataSet ds = filldropdownlist.listComingResforcustomer(Convert.ToInt32(Session["userID"].ToString())); // 1 yerine session dan gelen veri yazolacak -- seçilen restoranın numarası
             pagesource = new PagedDataSource();
             pagesource.DataSource = ds.Tables[0].DefaultView;
             pagesource.PageSize = 10;
@@ -69,7 +69,7 @@ namespace waiterApp
         {
             connection.Open();
             SqlCommand update = new SqlCommand("update users.userinfo set currency = @curr where userID = @uid", connection);
-            update.Parameters.Add("@uid", SqlDbType.NVarChar).Value = "1"; // sessiondan gelen kullanıcı id si yazılacak
+            update.Parameters.Add("@uid", SqlDbType.NVarChar).Value = Session["userID"].ToString(); // sessiondan gelen kullanıcı id si yazılacak
             update.Parameters.Add("@curr", SqlDbType.NVarChar).Value = currencylist.SelectedValue.ToString();
             update.ExecuteNonQuery();
             connection.Close();
@@ -79,7 +79,7 @@ namespace waiterApp
         {
             connection.Open();
             SqlCommand update = new SqlCommand("update users.userinfo set lang = @lang where userID = @uid", connection);
-            update.Parameters.Add("@uid", SqlDbType.NVarChar).Value = "1"; // sessiondan gelen kullanıcı id si yazılacak
+            update.Parameters.Add("@uid", SqlDbType.NVarChar).Value = Session["userID"].ToString(); // sessiondan gelen kullanıcı id si yazılacak
             update.Parameters.Add("@lang", SqlDbType.NVarChar).Value = langlist.SelectedValue.ToString();
             update.ExecuteNonQuery();
             connection.Close();

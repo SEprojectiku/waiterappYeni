@@ -118,7 +118,7 @@ namespace waiterApp
                     submit.Parameters.AddWithValue("@tableNumber ", 1);
                     submit.Parameters.AddWithValue("@workOpen ", wopen.Text);
                     submit.Parameters.AddWithValue("@workClose ", wclose.Text);
-                    submit.Parameters.AddWithValue("@memberID ", 1);
+                    submit.Parameters.AddWithValue("@memberID ", Session["memberID"].ToString());
                     submit.Connection = connection;
 
                     basarili = Convert.ToInt32(submit.ExecuteScalar());

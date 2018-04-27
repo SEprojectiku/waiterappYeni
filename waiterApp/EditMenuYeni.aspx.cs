@@ -25,7 +25,7 @@ namespace waiterApp
                 Repeater1.DataBind();
 
                 SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
-                query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = 1; // sessiondan gelen kullanıcı id si yazılacak
+                query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = Session["bID"].ToString(); // sessiondan gelen kullanıcı id si yazılacak
                 connection.Open();
                 SqlDataReader dr = query.ExecuteReader();
                 if (dr.Read())
@@ -43,7 +43,7 @@ namespace waiterApp
             int menuid = Convert.ToInt32(Session["menuID"].ToString());
             SqlConnection con = new SqlConnection(connectionString);
             
-            SqlCommand komut = new SqlCommand("SELECT * FROM [business].[menudetails] md inner join [business].[menu] m on m.menuID = md.menuID where m.bID = 1 and m.menuID = '"+menuid+"' and md.catID=" + Convert.ToInt32(DataBinder.Eval(e.Item.DataItem,"catID")), con);// işletmeye özel sorgu için businessID GİRİLECEK eKSİK
+            SqlCommand komut = new SqlCommand("SELECT * FROM [business].[menudetails] md inner join [business].[menu] m on m.menuID = md.menuID where m.bID = '"+Session["bID"].ToString()+"' and m.menuID = '"+menuid+"' and md.catID=" + Convert.ToInt32(DataBinder.Eval(e.Item.DataItem,"catID")), con);// işletmeye özel sorgu için businessID GİRİLECEK eKSİK
             con.Open();
             Repeater rp = (Repeater)e.Item.FindControl("Repeater2");
            

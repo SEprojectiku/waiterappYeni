@@ -596,6 +596,40 @@ namespace waiterApp
             return date;
         }
 
+        public DataSet getOrderDetailsForBusiness(int orderid, int bid)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+            using (var cmd = new SqlCommand("getOrderDetailsForBusiness", con))
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@bid", bid));
+                cmd.Parameters.Add(new SqlParameter("@orderid", orderid));
+                da.Fill(ds);
+            }
+            con.Close();
+            return ds;
+
+        }
+        
+         public DataSet getOrderDetailsForBusinessinGeneral(int bid)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+            using (var cmd = new SqlCommand("getOrderDetailsForBusinessinGeneral", con))
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@bid", bid));
+                da.Fill(ds);
+            }
+            con.Close();
+            return ds;
+
+        }
 
     }
 }

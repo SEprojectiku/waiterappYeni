@@ -7,11 +7,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Xml;
 namespace waiterApp
 {
     public partial class CustomerSearchPage : System.Web.UI.Page
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["constring"].ConnectionString;
+        static string locati=null;
+        static string connectionString = ConfigurationManager.ConnectionStrings["constring"].ConnectionString;
+        SqlConnection connection = new SqlConnection(connectionString);
         fillDropDown fdp = new fillDropDown();
         insertions insert = new insertions();
         string catid;
@@ -28,12 +31,32 @@ namespace waiterApp
                 SelectState.DataSource = dt;
                 SelectState.DataBind();
                 Panel2.Visible = false;
+
+
+                SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
+                query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = Session["bID"].ToString(); // sessiondan gelen kullanici id si yazilacak
+                connection.Open();
+                SqlDataReader dr = query.ExecuteReader();
+                if (dr.Read())
+                {
+                    //myName.Text = dr["bName"].ToString();
+                    navbarname.Text = dr["bName"].ToString();
+
+                }
+                connection.Close();
+
+                myName.Text = Session["userID"].ToString();
             }
         }
 
         protected void SearchResID_Click(object sender, EventArgs e)
         {
-            string city =SelectState.SelectedItem.Value;
+            //string city =SelectState.SelectedItem.Value;
+            string city;
+            if (locati != null)
+                city = locati;
+            else
+                city = SelectState.SelectedItem.Value;
             string searchbar = SearchBox.Text;
             if(searchbar != "" && city != "0")
             {
@@ -61,7 +84,13 @@ namespace waiterApp
 
         protected void Buttons_Click(object sender, EventArgs e)
         {
-            string city = SelectState.SelectedItem.Value;
+            string city;
+            if (locati != null)
+                city = locati;
+            else
+                city = SelectState.SelectedItem.Value;
+
+
             string searchbar = SearchBox.Text;
             LinkButton Button1 = (LinkButton)sender;
             
@@ -101,6 +130,51 @@ namespace waiterApp
         protected void BusinessList_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
 
+        }
+        static string loc = null;
+        static string loc1 = null;
+        static string loc2 = null;
+        protected void location_Click(object sender, EventArgs e)
+        {
+            
+            XmlTextReader rd = new XmlTextReader("http://ip-api.com/xml");
+            while (rd.Read())
+            {
+                if (rd.NodeType == XmlNodeType.Element)
+                {
+                   
+                    if (rd.Name == "country")
+                    {
+                        rd.Read();
+                        loc1 = rd.Value.ToString();
+                    }
+                    if (rd.Name == "city")
+                    {
+                        rd.Read();
+                         loc2= rd.Value.ToString();
+
+
+                        
+                    }
+                 
+
+                }
+            }
+            loc = loc2 + "," + loc1;
+
+
+            locati = SelectState.Items.FindByText(loc).Value;
+            location.Text = loc;
+            other.Visible = true;
+            SelectState.Visible = false;
+        }
+
+        protected void other_Click(object sender, EventArgs e)
+        {
+            other.Visible = false;
+            SelectState.Visible = true;
+            location.Text = "My location";
+            locati = null;
         }
 
         /*  protected void Hightlow_Click(object sender, EventArgs e)

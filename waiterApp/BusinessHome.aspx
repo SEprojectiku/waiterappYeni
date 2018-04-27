@@ -88,7 +88,10 @@
 
   <div class="panel-group">
     <div class="panel panel-default">
+        <div>
+            <asp:Button ID="editinfobutton" runat="server" Text="Edit Business Information" class="btn btn-success" OnClick="editinfobutton_Click"/>
 
+        </div>
       <div class="panel-heading">
           <h3>Recent Orders</h3>
 
@@ -97,35 +100,17 @@
 
           <div class="row">
         <div class="col-sm-4">
-          <div class="well">
-            <h4>Table 2</h4>
-            <p>Text</p> 
-            <p>Text</p>
-          <asp:Button runat="server" Text="Check"  class="btn btn-success" />
+            <asp:Repeater ID="Repeater1" runat="server"><ItemTemplate>
+             <div class="well">
+            <h4><%#Eval("tName")%></h4>
+            <p><%#Eval("orderID")%></p> 
+            <p><%#Eval("orderDate")%></p>
+          <asp:Button runat="server" Text="Check"  class="btn btn-success" CommandArgument='<%#Eval("orderID")%>' OnClick="Unnamed_Click"/>
           </div>
         </div>
-        <div class="col-sm-4">
-          <div class="well">
-            <h4>Table 8</h4> 
-            <p>Text</p> 
-            <p>Text</p> 
-          <asp:Button runat="server" Text="Check"  class="btn btn-success" />
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="well">
-            <h4>Table 3</h4> 
-            <p>Text</p> 
-            <p>Text</p> 
-          <asp:Button runat="server" Text="Check"  class="btn btn-success"/>
-          </div>
-        </div>
+        </ItemTemplate></asp:Repeater>
+       
       </div>
-
-
-
-
-
 
 
       </div>

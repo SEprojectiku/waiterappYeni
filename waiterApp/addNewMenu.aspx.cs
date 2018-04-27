@@ -46,7 +46,8 @@ namespace waiterApp
                 i++;
 
             }
-            insert.insertnewMenu(1,name, i); // 1 yerine business Id gelecek
+            insert.insertnewMenu(Convert.ToInt32(Session["bID"].ToString()),name, i); // 1 yerine business Id gelecek
+
         }
     }
 }

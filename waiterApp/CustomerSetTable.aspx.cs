@@ -19,6 +19,8 @@ namespace waiterApp
             int time;
         protected void Page_Load(object sender, EventArgs e)
         {
+            myName.Text = Session["bName"].ToString();
+            navbarname.Text = Session["userName"].ToString();
             fill();
         }
 

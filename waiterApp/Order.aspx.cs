@@ -23,6 +23,8 @@ namespace waiterApp
         {
             if(!IsPostBack)
             {
+                myName.Text = Session["bName"].ToString();
+                navbarname.Text = Session["userName"].ToString();
                 Repeater2.DataSource = fdp.listActiveMenuitems(1);
                 Repeater2.DataBind();
 
@@ -32,7 +34,7 @@ namespace waiterApp
             }
          int i = 0;
              connection.Open();
-            SqlCommand cmd = new SqlCommand("select * from [business].[menu] m inner join[business].[menudetails] md on m.menuID = md.menuID where bID = 1 and isMenuOnline = 1 and md.visibility = 1", connection); 
+            SqlCommand cmd = new SqlCommand("select * from [business].[menu] m inner join[business].[menudetails] md on m.menuID = md.menuID where bID = '"+Session["bID"].ToString()+"' and isMenuOnline = 1 and md.visibility = 1", connection); 
             SqlDataReader dr = cmd.ExecuteReader();
             while(dr.Read())
             {
@@ -69,15 +71,17 @@ namespace waiterApp
             int orderid = 1;
 
             connection.Open();
-            SqlCommand cmd = new SqlCommand("select * from orders.orders where userID = 1", connection);
+            SqlCommand cmd = new SqlCommand("select * from orders.orders where userID = " + Session["userID"].ToString(), connection);
             SqlDataReader dr = cmd.ExecuteReader();
             while(dr.Read())
             {
                 orderid = Convert.ToInt32(dr["orderID"].ToString());
             }
             connection.Close();
+            Session["orderID"] = orderid;
             int toplam = j;
             insert.insertOrderDetails(orderid, itemlist, quantitylist, toplam);
+
 
         }
     }

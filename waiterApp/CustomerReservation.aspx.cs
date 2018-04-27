@@ -20,7 +20,7 @@ namespace waiterApp
         {
             if (!Page.IsPostBack)
             {
-                DataTable dt = filldropdownlist.tableTypes(1); // 1 yerine session dan gelen veri yazolacak -- seçilen restoranın numarası
+                DataTable dt = filldropdownlist.tableTypes(Convert.ToInt32(Session["bID"].ToString())); // 1 yerine session dan gelen veri yazolacak -- seçilen restoranın numarası
                 types.DataTextField = "tableType";
                 types.DataValueField = "typeID";
                 types.DataSource = dt;
@@ -31,7 +31,7 @@ namespace waiterApp
         protected void Button1_Click(object sender, EventArgs e)
         {
             string mesaj = messageText.Text.ToString();
-            insert.insertReservation(1, Convert.ToInt32(tablename.SelectedValue), Session["date1"].ToString(), Convert.ToInt32(timeList.SelectedValue), mesaj);
+            insert.insertReservation(Convert.ToInt32(Session["userID"].ToString()), Convert.ToInt32(tablename.SelectedValue), Session["date1"].ToString(), Convert.ToInt32(timeList.SelectedValue), mesaj);
 
         }
         
@@ -75,7 +75,7 @@ namespace waiterApp
         {
             string date1 = Session["date1"].ToString();
             string date2 = Session["date2"].ToString();
-            DataTable dt = filldropdownlist.listavaliableTables(1, Convert.ToInt32(timeList.SelectedValue.ToString()), date1, date2, Convert.ToInt32(types.SelectedValue.ToString()));
+            DataTable dt = filldropdownlist.listavaliableTables(Convert.ToInt32(Session["bID"].ToString()), Convert.ToInt32(timeList.SelectedValue.ToString()), date1, date2, Convert.ToInt32(types.SelectedValue.ToString()));
             tablename.DataTextField = "tName";
             tablename.DataValueField = "tID";
             tablename.DataSource = dt;

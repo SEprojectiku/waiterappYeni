@@ -44,12 +44,7 @@
            
         <a class="nav-link" href="#">Orders<span class="badge">5</span></a>
       </li>
-       <li class="nav-item">
-        <a class="nav-link" href="#">Messages<span class="badge">6</span></a>
-      </li>   
-      <li class="nav-item">
-        <a class="nav-link" href="#">Daily Reports</a>
-      </li>
+
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Edit
         <span class="caret"></span></a>
@@ -71,7 +66,7 @@
         </div>
       </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span>Tuncay Yılmaz</a></li>
+        <li> <asp:Label ID="navbarname" runat="server" Text="Label"></asp:Label></li>
       </ul>
     </div>
   </div>
@@ -82,7 +77,7 @@
   <div class="row">
     <div class="col-sm-12 well">
       <div class="well">
-        <p><a href="#">Tuncay Yılmaz</a></p>
+        <p> <asp:Label ID="myName" runat="server" Text="Label"></asp:Label></p>
         <img src="images/deneme.jpg" class="img-circle" height="65" width="65" alt="Avatar"/>
       </div>
 
@@ -99,8 +94,10 @@
                 <asp:DropDownList ID="SelectState"  class="form-control" style="float:left;" Width="30%"  runat="server" >
                     <asp:ListItem Value="0">Type a City or Country Name</asp:ListItem>
                     </asp:DropDownList>
-                
-                <asp:Button ID="SearchResID" Text="Search" style="float:right; " runat="server" class="btn btn-primary" OnClick="SearchResID_Click"/>
+                <asp:Button runat="server" ID="other" CssClass="btn btn-primary" OnClick="other_Click" Text="Find other locations" Visible="false"/>
+                <asp:Button runat="server" ID="location" Text="My location" CssClass="btn btn-primary col-lg-offset-1" OnClick="location_Click"/>
+
+                    <asp:Button ID="SearchResID" Text="Search" style="float:right; " runat="server" class="btn btn-primary" OnClick="SearchResID_Click"/>
                 <asp:TextBox id="SearchBox" class="form-control" style="float:right; "  Width="40%" runat="server" />
                 
            

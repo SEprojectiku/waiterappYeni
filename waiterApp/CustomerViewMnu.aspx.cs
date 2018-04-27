@@ -18,8 +18,11 @@ namespace waiterApp
             if (!Page.IsPostBack)
             {
               //  int menuid = Convert.ToInt32(Session["menuID"].ToString());
-                Repeater1.DataSource = fdp.listActiveMenuitemsCategories(1); //business id girilecek
+                Repeater1.DataSource = fdp.listActiveMenuitemsCategories(Convert.ToInt32(Session["bID"].ToString())); //business id girilecek
                 Repeater1.DataBind();
+
+                myName.Text = Session["bName"].ToString();
+                navbarname.Text = Session["userName"].ToString();
 
             }
         }
@@ -32,7 +35,7 @@ namespace waiterApp
                 con.Open();*/
                 Repeater rp = (Repeater)e.Item.FindControl("Repeater2");
 
-            rp.DataSource = fdp.listActiveMenuitemswithCategories(1, Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "catID")));
+            rp.DataSource = fdp.listActiveMenuitemswithCategories(Convert.ToInt32(Session["bID"].ToString()), Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "catID")));
             rp.DataBind();
 
             con.Close();

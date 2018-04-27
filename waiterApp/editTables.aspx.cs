@@ -18,7 +18,7 @@ namespace waiterApp
         protected void Page_Load(object sender, EventArgs e)
         {
             SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
-            query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = 1; // sessiondan gelen kullanıcı id si yazılacak
+            query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = Convert.ToInt32(Session["bID"].ToString()); // sessiondan gelen kullanıcı id si yazılacak
             connection.Open();
             SqlDataReader dr = query.ExecuteReader();
             if (dr.Read())
@@ -66,7 +66,7 @@ namespace waiterApp
             delete.ExecuteNonQuery();
             con.Close();
 
-            Repeater1.DataSource = fdp.tableTypes(1);
+            Repeater1.DataSource = fdp.tableTypes(Convert.ToInt32(Session["bID"].ToString()));
             Repeater1.DataBind();
             }
             

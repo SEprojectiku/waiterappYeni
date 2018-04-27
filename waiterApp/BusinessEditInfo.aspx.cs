@@ -38,7 +38,7 @@ namespace waiterApp
                 countrylist.DataBind();
 
                 SqlCommand query2 = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
-                query2.Parameters.Add("@bid", SqlDbType.NVarChar).Value = 1; // sessiondan gelen kullanıcı id si yazılacak
+                query2.Parameters.Add("@bid", SqlDbType.NVarChar).Value = Session["bID"].ToString(); // sessiondan gelen kullanıcı id si yazılacak
                 connection.Open();
                 SqlDataReader dr2 = query2.ExecuteReader();
                 if (dr2.Read())
@@ -54,7 +54,7 @@ namespace waiterApp
 
                 SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
 
-                query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = 1;
+                query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = Session["bID"].ToString();
 
 
                 connection.Open();
@@ -104,7 +104,7 @@ namespace waiterApp
 
         protected void savebutton_Click(object sender, EventArgs e)
         {
-            insert.updateBusinessinfo(1, bname.Text, bdesc.Text, Convert.ToInt32(cityist.SelectedValue), p1.Text, p2.Text, email.Text, Convert.ToDecimal(lat.Text), Convert.ToDecimal(lng.Text), Convert.ToInt32(avg.Text), Convert.ToInt32(wopen.Text), Convert.ToInt32(wclose.Text), Convert.ToInt32(currencylist.SelectedValue), Convert.ToInt32(langlist.SelectedValue));
+            insert.updateBusinessinfo(Convert.ToInt32(Session["bID"].ToString()), bname.Text, bdesc.Text, Convert.ToInt32(cityist.SelectedValue), p1.Text, p2.Text, email.Text, Convert.ToDecimal(lat.Text), Convert.ToDecimal(lng.Text), Convert.ToInt32(avg.Text), Convert.ToInt32(wopen.Text), Convert.ToInt32(wclose.Text), Convert.ToInt32(currencylist.SelectedValue), Convert.ToInt32(langlist.SelectedValue));
 
         }
     }

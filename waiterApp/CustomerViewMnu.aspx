@@ -66,7 +66,7 @@
         </div>
       </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span>MestanliCafe</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span><asp:Label ID="navbarname" runat="server" Text="Label"></asp:Label></a></li>
       </ul>
     </div>
   </div>
@@ -75,7 +75,7 @@
          <div class="row">
                 <div class="col-sm-12 well">
                   <div class="well">
-                    <p><a href="#">MestanlıCafe</a></p>
+                    <p><a href="#"><asp:Label ID="myName" runat="server" Text="Label"></asp:Label></a></p>
                     <img src="images/deneme.jpg" class="img-circle" height="65" width="65" alt="Avatar"/>
                  </div>
 

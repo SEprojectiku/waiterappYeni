@@ -11,7 +11,11 @@ namespace waiterApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!IsPostBack)
+            {
+                navbarname.Text = Session["userName"].ToString();
+                myName.Text = Session["bName"].ToString();
+            }
         }
 
         protected void sitbutton_Click(object sender, EventArgs e)

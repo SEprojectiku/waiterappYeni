@@ -60,7 +60,7 @@ namespace waiterApp
                 SqlCommand query = new SqlCommand("SELECT * FROM users.userinfo WHERE email=@email AND userPassword=@pass", connection);
 
                 query.Parameters.Add("@email", SqlDbType.NVarChar).Value = emailBox.Text;
-                query.Parameters.Add("@pass", SqlDbType.NVarChar).Value = password;// enc.CreateMD5(passBox.Text);
+                query.Parameters.Add("@pass", SqlDbType.NVarChar).Value = passBox.Text;// enc.CreateMD5(passBox.Text);
 
                 connection.Open();
 
@@ -72,14 +72,15 @@ namespace waiterApp
                     myCookie["name"] = emailBox.Text;
                     myCookie.Expires = DateTime.Now.AddDays(1);
 
-
+                    Session["userID"] = dr["userID"].ToString();
+                    Session["userName"] = dr["userName"].ToString();
 
                     myCookie["userID"] = dr["userID"].ToString();
                     //myCookie["fname"] = dr["FirstName"].ToString();
                     //myCookie["lname"] = dr["LastName"].ToString();
                     //myCookie["isAdmin"] = dr["isAdmin"].ToString();
                     Response.Cookies.Add(myCookie);
-                    Response.Redirect("Index.aspx");
+                    Response.Redirect("CustomerSearchPage.aspx");
 
                 }
                 else
@@ -92,10 +93,10 @@ namespace waiterApp
             }
             else
             {
-                SqlCommand query = new SqlCommand("SELECT * FROM business.memberinfo WHERE email=@email AND userPassword=@pass", connection);
+                SqlCommand query = new SqlCommand("SELECT * FROM business.memberinfo m inner join business.businessinfo b  on b.memberID = m.memberID WHERE m.email=@email AND m.userPassword=@pass", connection);
 
                 query.Parameters.Add("@email", SqlDbType.NVarChar).Value = emailBox.Text;
-                query.Parameters.Add("@pass", SqlDbType.NVarChar).Value = enc.CreateMD5(passBox.Text);
+                query.Parameters.Add("@pass", SqlDbType.NVarChar).Value = passBox.Text;
 
                 connection.Open();
 
@@ -107,14 +108,16 @@ namespace waiterApp
                     myCookie["name"] = emailBox.Text;
                     myCookie.Expires = DateTime.Now.AddDays(1);
 
-
+                    Session["bID"] = dr["bID"].ToString();
+                    Session["bName"] = dr["bName"].ToString();
+                    Session["memberID"] = dr["memberID"].ToString();
 
                     myCookie["userID"] = dr["memberID"].ToString();
                     //myCookie["fname"] = dr["FirstName"].ToString();
                     //myCookie["lname"] = dr["LastName"].ToString();
                     //myCookie["isAdmin"] = dr["isAdmin"].ToString();
                     Response.Cookies.Add(myCookie);
-                    Response.Redirect("Index.aspx");
+                    Response.Redirect("BusinessHome.aspx");
 
                 }
                 else

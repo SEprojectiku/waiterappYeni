@@ -1,4 +1,4 @@
-﻿ü<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustomerBusinessPage.aspx.cs" Inherits="waiterApp.CustomerBusinessPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="reasonPage.aspx.cs" Inherits="waiterApp.reasonPage" %>
 
 <!DOCTYPE html>
 
@@ -84,7 +84,7 @@
         </div>
       </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><asp:Label ID="navbarname" runat="server" Text="Label"></asp:Label></li>
+        <li> <asp:Label ID="navbarname" runat="server" Text="Label"></asp:Label></li>
       </ul>
     </div>
   </div>
@@ -93,24 +93,51 @@
   <div class="row">
     <div class="col-sm-12 well">
       <div class="well">
-        <p><a href="#"> <asp:Label ID="myName" runat="server" Text="Label"></asp:Label></a></p>
+        <p><asp:Label ID="myName" runat="server" Text="Label"></asp:Label></p>
         <img src="images/deneme.jpg" class="img-circle" height="65" width="65" alt="Avatar"/>
       </div>
 
     </div>
-      <div>
-          <asp:Button ID="ViewMenubutton" runat="server" Text="View Menu" OnClick="ViewMenubutton_Click"/>
-          <asp:Button ID="rezbutton" runat="server" Text="Resarvation" OnClick="rezbutton_Click"/>
-          <asp:Button ID="sitbutton" runat="server" Text="Sit On table" OnClick="sitbutton_Click" />
-      </div>
   </div>
 
      <div class="mainbody container-fluid">
- 
+ <div>
+    This mounth you canceled <asp:Label ID="countlbl" runat="server" Text="0"></asp:Label> order because of "Lack of indegrediends"   
+ </div>
+    <div class="row clearfix">
+		<div class="col-md-12 column">
+			<table class="table table-bordered table-hover" id="tab_logic">
+				<thead>
+					<tr >
+						
+						<th class="auto-style1">
+							Reason</th>
+						<th>Description(Optional)</th>
+					</tr>
 
 
+				</thead>
+				<tbody>
+					<tr id='addr0'>
+						
+						
+                        <td>
+                            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control"></asp:DropDownList></td>
+						<td class="auto-style6">
+                            <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
+						</td>
+                        
+						
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	     <asp:Button runat="server" Text="Save" OnClick="Unnamed_Click" />
+         
          </div>
 </div>
     </form>
 </body>
 </html>
+

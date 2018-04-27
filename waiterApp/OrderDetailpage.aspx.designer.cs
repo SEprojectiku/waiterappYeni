@@ -10,7 +10,7 @@
 namespace waiterApp {
     
     
-    public partial class CustomerBusinessPage {
+    public partial class OrderDetailpage {
         
         /// <summary>
         /// form1 control.
@@ -49,39 +49,48 @@ namespace waiterApp {
         protected global::System.Web.UI.WebControls.Label navbarname;
         
         /// <summary>
-        /// myName control.
+        /// uname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label myName;
+        protected global::System.Web.UI.WebControls.Label uname;
         
         /// <summary>
-        /// ViewMenubutton control.
+        /// date control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ViewMenubutton;
+        protected global::System.Web.UI.WebControls.Label date;
         
         /// <summary>
-        /// rezbutton control.
+        /// cancelfine control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button rezbutton;
+        protected global::System.Web.UI.WebControls.Label cancelfine;
         
         /// <summary>
-        /// sitbutton control.
+        /// Repeater1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button sitbutton;
+        protected global::System.Web.UI.WebControls.Repeater Repeater1;
+        
+        /// <summary>
+        /// cancelbutton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button cancelbutton;
     }
 }
