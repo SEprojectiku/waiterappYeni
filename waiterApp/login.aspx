@@ -48,7 +48,7 @@
         </div>
         
         <div class="form-group col-md-12 text-center">
-        <asp:Button ID="loginBtn" runat="server" CssClass="btn btn-primary text-center mb-2" OnClick="login_Click"  Text="Sign up!"  /><br /><br />
+        <asp:Button ID="loginBtn" runat="server" CssClass="btn btn-primary text-center mb-2" OnClick="login_Click"  Text="Login"  /><br /><br />
             <asp:Label ID="err_lbl" runat="server" Visible="false" CssClass="mb-5" Text="Email or password incorrect!"></asp:Label>
         </div>
             </ContentTemplate>
