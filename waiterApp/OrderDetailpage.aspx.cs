@@ -47,6 +47,8 @@ namespace waiterApp
             SqlCommand update = new SqlCommand("update orders.orders set isConfirmed = 1 where orderID = " + Session["orderID"].ToString(), connection);
             update.ExecuteNonQuery();
             connection.Close();
+
+            Server.Transfer("BusinessHome.aspx", true);
         }
     }
 }

@@ -47,7 +47,7 @@ namespace waiterApp
 
             }
             insert.insertnewMenu(Convert.ToInt32(Session["bID"].ToString()),name, i); // 1 yerine business Id gelecek
-
+            Server.Transfer("BusinessListMenus.aspx",true);
         }
     }
 }

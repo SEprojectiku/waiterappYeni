@@ -75,6 +75,8 @@ namespace waiterApp
             // TextBox2.Text = strValue;
 
             insert.insertTable(type, name, chair, i, Convert.ToInt32(Session["bID"].ToString())); //1 yerine sessiondan gelen bid yaz
+
+            Server.Transfer("BusinessViewTables.aspx", true);
         }
     }
 }

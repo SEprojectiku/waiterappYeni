@@ -144,6 +144,7 @@
             <asp:Button ID="editmenubutton" runat="server" CssClass="form-control" Text="Edit Menu" OnClick="editmenubutton_Click"/>
             <asp:Button ID="edittablebutton" runat="server" CssClass="form-control" Text="Edit Tables" OnClick="edittablebutton_Click"/>
             <asp:Button ID="savebutton" runat="server" Text="Save Changes" OnClick="savebutton_Click"/>
+            <asp:Label ID="errorlbl" runat="server" Text="Select a city" Visible="false"></asp:Label>
             <div class="panel panel-default">
                 <div class="panel-body">
                     

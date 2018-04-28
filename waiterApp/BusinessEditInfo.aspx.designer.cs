@@ -211,6 +211,15 @@ namespace waiterApp {
         protected global::System.Web.UI.WebControls.Button savebutton;
         
         /// <summary>
+        /// errorlbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorlbl;
+        
+        /// <summary>
         /// Your_location control.
         /// </summary>
         /// <remarks>
