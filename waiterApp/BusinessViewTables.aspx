@@ -16,7 +16,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <nav class="navbar navbar-inverse navbar-fixed-top" style="width:96%; margin-left:2%; ">
+   <nav class="navbar navbar-inverse navbar-fixed-top" style="width:96%; margin-left:2%; ">
    <div class="container ">
     <div class="navbar-header">
      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -29,29 +29,33 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="nav-item ">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="BusinessHome.aspx">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Bookings</a>
+        <a class="nav-link" href="viewReservations.aspx">Bookings</a>
       </li>
       
       <li class="nav-item">
            
-        <a class="nav-link" href="#">Orders<span class="badge">5</span></a>
+        <a class="nav-link" href="BusinessHome.aspx">Orders<span class="badge"></span></a>
       </li>
-       <li class="nav-item">
+           <li class="nav-item">
+           
+        <a class="nav-link" href="BusinessViewTables.aspx">Tables<span class="badge"></span></a>
+      </li>
+       <%--<li class="nav-item">
         <a class="nav-link" href="#">Messages<span class="badge">6</span></a>
-      </li>   
-      <li class="nav-item">
+      </li>   --%>
+      <%--<li class="nav-item">
         <a class="nav-link" href="#">Daily Reports</a>
-      </li>
+      </li>--%>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Edit
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Information</a></li>
-          <li><a href="#">Menu</a></li>
-          
+          <li><a href="BusinessEditInfo.aspx">Information</a></li>
+          <li><a href="BusinessListMenus.aspx">Menu</a></li>
+          <li><a href="editTables.aspx">Tables</a></li>
         </ul>
       </li>
       </ul>
