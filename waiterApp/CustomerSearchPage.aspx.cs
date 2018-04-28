@@ -75,11 +75,11 @@ namespace waiterApp
 
         protected void Buttons_Click(object sender, EventArgs e)
         {
-            //string city;
-            //if (locati != null)
-            //    city = locati;
-            //else
-            //    city = SelectState.SelectedItem.Value;
+            string city;
+            if (locati != null)
+                city = locati;
+            else
+                city = SelectState.SelectedItem.Value;
 
 
             string searchbar = SearchBox.Text;

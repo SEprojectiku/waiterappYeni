@@ -16,7 +16,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <nav class="navbar navbar-inverse navbar-fixed-top" style="width:96%; margin-left:2%; ">
+   <nav class="navbar navbar-inverse navbar-fixed-top" style="width:96%; margin-left:2%; ">
    <div class="container ">
     <div class="navbar-header">
      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -24,33 +24,28 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">WaiterAPP</a>
+      <a class="navbar-brand" href="CustomerSearchPage.aspx">WaiterAPP</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="nav-item ">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="CutomerProfilePage.aspx">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Bookings</a>
-      </li>
+<%--      <li class="nav-item">
+        <a class="nav-link" href="CustomerReservation.aspx">Bookings</a>
+      </li>--%>
       
-      <li class="nav-item">
+   <%--   <li class="nav-item">
            
         <a class="nav-link" href="#">Orders<span class="badge">5</span></a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="#">Messages<span class="badge">6</span></a>
-      </li>   
-      <li class="nav-item">
-        <a class="nav-link" href="#">Daily Reports</a>
-      </li>
+      </li>--%>
+
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Edit
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Information</a></li>
-          <li><a href="#">Menu</a></li>
+          <li><a href="CutomerProfilePage.aspx">Information</a></li>
+         <%-- <li><a href="#">Menu</a></li>--%>
           
         </ul>
       </li>
@@ -66,7 +61,7 @@
         </div>
       </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> <asp:Label ID="navbarname" runat="server" Text="Label"></asp:Label></a></li>
+        <li> <asp:Label ID="navbarname" runat="server" Text="Label"></asp:Label></li>
       </ul>
     </div>
   </div>
