@@ -234,6 +234,8 @@
     <Content Include="vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="vendor\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="WebForm1.aspx" />
+    <None Include="Properties\PublishProfiles\waiterapp - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\waiterapp - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

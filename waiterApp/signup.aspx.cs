@@ -77,7 +77,8 @@ namespace waiterApp
             
 
             
-            currencylist.Visible = false;Label11.Visible = false;
+            currencylist.Visible = true;
+            Label11.Visible = false;
            
         }
 
@@ -90,7 +91,7 @@ namespace waiterApp
 
 
 
-            string password = enc.CreateMD5(pass1.Text.Trim());
+           // string password = enc.CreateMD5(pass1.Text.Trim());
             currencylist.Visible = true;
             Label11.Visible = true;
            
@@ -109,7 +110,7 @@ namespace waiterApp
                                                                     "VALUES(@fname,@lname,@uname,@phone,@email,@password,@bday,@gendr,@city,@lang,@regisdate,@memstatus,@phopath)";
 
 
-               string password = enc.CreateMD5(pass1.Text.Trim());
+         //      string password = enc.CreateMD5(pass1.Text.Trim());
 
             string birth = year.SelectedValue.ToString() + "-" + mount.SelectedValue.ToString() + "-" +
                          day.SelectedValue.ToString();
@@ -128,7 +129,7 @@ namespace waiterApp
                     submit.Parameters.AddWithValue("@uname ", usernameBox.Text.Trim());
                     submit.Parameters.AddWithValue("@email ", email_txtb.Text.Trim());
                     submit.Parameters.AddWithValue("@phone ", phone1.Text.Trim());
-                    submit.Parameters.AddWithValue("@password ", password);
+                    submit.Parameters.AddWithValue("@password ", pass1.Text.Trim());
                     submit.Parameters.AddWithValue("@bday ", birth);
                     submit.Parameters.AddWithValue("@gendr ", gender.SelectedValue);
                     submit.Parameters.AddWithValue("@city ", cityist.SelectedIndex+1);
@@ -140,6 +141,21 @@ namespace waiterApp
                     submit.Connection = connection;
 
                     basarili = Convert.ToInt32(submit.ExecuteScalar());
+                    connection.Close();
+
+                }
+
+                if (signUpType == false)
+                {
+
+                    connection.Open();
+                    SqlCommand getid = new SqlCommand("select * from business.memberinfo where email = '" + email_txtb.Text.Trim()+ "'", connection);
+                    SqlDataReader dr = getid.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        Session["memberID"] = dr["memberID"].ToString();
+                        Server.Transfer("BusinessAddInfo.aspx", true);
+                    }
                     connection.Close();
                 }
 

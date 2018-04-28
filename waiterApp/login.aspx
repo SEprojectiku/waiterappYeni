@@ -44,7 +44,7 @@
             <asp:Label ID="name" runat="server" Text="Email"></asp:Label><asp:TextBox ID="emailBox" CssClass="form-control" runat="server"></asp:TextBox><br /><br />
         </div>
         <div class="form-group col-md-12">
-            <asp:Label ID="Label4" runat="server" Text="Password"></asp:Label><asp:TextBox ID="passBox" CssClass="form-control" runat="server"></asp:TextBox><br /><br />
+            <asp:Label ID="Label4" runat="server" Text="Password"></asp:Label><asp:TextBox ID="passBox" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox><br /><br />
         </div>
         
         <div class="form-group col-md-12 text-center">

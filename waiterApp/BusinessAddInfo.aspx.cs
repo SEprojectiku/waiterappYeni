@@ -127,6 +127,8 @@ namespace waiterApp
 
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "basicModal", "$('#basicModal').modal();", true);
                 success.Visible = true; fail.Visible = false;
+
+                Server.Transfer("BusinessHome.aspx", true);
             }
             catch (Exception)
             {
