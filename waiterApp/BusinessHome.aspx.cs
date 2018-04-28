@@ -20,7 +20,7 @@ namespace waiterApp
         {
             if(!IsPostBack)
             { 
-            DataSet ds = filldropdownlist.listReservations(1, 1); 
+            DataSet ds = filldropdownlist.listReservations(Convert.ToInt32(Session["bID"].ToString()),1); 
             pagesource = new PagedDataSource();
             pagesource.DataSource = ds.Tables[0].DefaultView;
             pagesource.PageSize = 10;
@@ -29,7 +29,7 @@ namespace waiterApp
             DataList1.DataSource = pagesource;
             DataList1.DataBind();
 
-            Repeater1.DataSource = filldropdownlist.getOrderDetailsForBusinessinGeneral(1); //session yazılacak
+            Repeater1.DataSource = filldropdownlist.getOrderDetailsForBusinessinGeneral(Convert.ToInt32(Session["bID"].ToString())); //session yazılacak
                 Repeater1.DataBind();
 
             SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);

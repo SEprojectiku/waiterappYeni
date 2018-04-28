@@ -26,16 +26,32 @@ namespace waiterApp
 
         protected void paybutton_Click(object sender, EventArgs e)
         {
-            insert.insertPayment(Convert.ToInt32(Session["bID"]), Convert.ToInt32(Session["userID"]), Convert.ToDecimal(Total.Text), Convert.ToInt32(Session["orderID"]), 1); //şimdilik direk confirm yapıyor, business için confirm sayfası yok
+            try
+            {
+                insert.insertPayment(Convert.ToInt32(Session["bID"]), Convert.ToInt32(Session["userID"]), Convert.ToDecimal(Total.Text), Convert.ToInt32(Session["orderID"]), 1); //şimdilik direk confirm yapıyor, business için confirm sayfası yok
 
-            connection.Open();
-            SqlCommand delete = new SqlCommand("delete from orders.orderDetails where orderID = " + Session["orderID"].ToString(), connection);
-            delete.ExecuteNonQuery();
-            SqlCommand delete2 = new SqlCommand("update orders.orders set orderStatus = 0", connection);
-            delete2.ExecuteNonQuery();
-            SqlCommand unsettable = new SqlCommand("update business.tableinfo set isAvailable = 1", connection);
-            unsettable.ExecuteNonQuery();
-            connection.Close();
+                connection.Open();
+                SqlCommand delete = new SqlCommand("delete from orders.orderDetails where orderID = " + Session["orderID"].ToString(), connection);
+                delete.ExecuteNonQuery();
+                SqlCommand delete2 = new SqlCommand("update orders.orders set orderStatus = 0", connection);
+                delete2.ExecuteNonQuery();
+                SqlCommand unsettable = new SqlCommand("update business.tableinfo set isAvailable = 1", connection);
+                unsettable.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch
+            {
+                connection.Open();
+                SqlCommand delete = new SqlCommand("delete from orders.orderDetails where orderID = " + Session["orderID"].ToString(), connection);
+                delete.ExecuteNonQuery();
+                SqlCommand delete2 = new SqlCommand("update orders.orders set orderStatus = 0", connection);
+                delete2.ExecuteNonQuery();
+                SqlCommand unsettable = new SqlCommand("update business.tableinfo set isAvailable = 1", connection);
+                unsettable.ExecuteNonQuery();
+                connection.Close();
+            }
+            Server.Transfer("CutomerProfilePage.aspx", true);
+
         }
     }
 }

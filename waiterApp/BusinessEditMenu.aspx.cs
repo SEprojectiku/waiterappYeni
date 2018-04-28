@@ -89,7 +89,7 @@ namespace waiterApp
             }
             int menuid = Convert.ToInt32(Session["menuID"].ToString());
             insert.insertMenu(catid, name, price, ingr, pretime, i, menuid);
-            Server.Transfer("EditMenuYeni.aspx", true);
+            Server.Transfer("BusinessListMenus.aspx", true);
             
         }
     }

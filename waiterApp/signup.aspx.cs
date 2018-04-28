@@ -22,9 +22,12 @@ namespace waiterApp
         encyption enc = new encyption();
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            pass1.Attributes["value"] = pass1.Text;
+            pass2.Attributes["value"] = pass2.Text;
             if (!Page.IsPostBack)
             {
+               
+
                 DataTable dt = filldropdownlist.currency();
                 currencylist.DataTextField = "currency";
                 currencylist.DataValueField = "id";
@@ -129,7 +132,7 @@ namespace waiterApp
                     submit.Parameters.AddWithValue("@uname ", usernameBox.Text.Trim());
                     submit.Parameters.AddWithValue("@email ", email_txtb.Text.Trim());
                     submit.Parameters.AddWithValue("@phone ", phone1.Text.Trim());
-                    submit.Parameters.AddWithValue("@password ", pass1.Text.Trim());
+                    submit.Parameters.AddWithValue("@password ", pass1.Text);
                     submit.Parameters.AddWithValue("@bday ", birth);
                     submit.Parameters.AddWithValue("@gendr ", gender.SelectedValue);
                     submit.Parameters.AddWithValue("@city ", cityist.SelectedIndex+1);

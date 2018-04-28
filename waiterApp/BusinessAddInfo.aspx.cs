@@ -38,7 +38,7 @@ namespace waiterApp
                 countrylist.DataSource = dt3;
                 countrylist.DataBind();
 
-                int bID = 1;
+               
 
                 //SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
 
@@ -106,7 +106,7 @@ namespace waiterApp
                     submit.Parameters.AddWithValue("@bName ", bname.Text );
                     submit.Parameters.AddWithValue("@bdesc ", bdesc.Text);
                    
-                    submit.Parameters.AddWithValue("@city ", 3);
+                    submit.Parameters.AddWithValue("@city ", cityist.SelectedValue);
                     submit.Parameters.AddWithValue("@establishedYear ", 1234);
                     submit.Parameters.AddWithValue("@registerDate ","1995-11-11");
                     submit.Parameters.AddWithValue("@phone1 ", p1.Text);
@@ -128,8 +128,27 @@ namespace waiterApp
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "basicModal", "$('#basicModal').modal();", true);
                 success.Visible = true; fail.Visible = false;
 
-                Server.Transfer("BusinessHome.aspx", true);
+                SqlCommand query = new SqlCommand("SELECT * FROM business.Businessinfo WHERE email=@email", connection);
+
+                query.Parameters.Add("@email", SqlDbType.NVarChar).Value = email.Text;
+
+
+                connection.Open();
+
+                SqlDataReader dr = query.ExecuteReader();
+                if (dr.Read())
+                {
+
+                    Session["bID"] = dr["bID"].ToString();
+                    Session["bName"] = dr["bName"].ToString();
+                    Session["memberID"] = dr["memberID"].ToString();
+
+                }
+                Response.AddHeader("REFRESH", "3;URL=BusinessHome.aspx");
+                //Server.Transfer("BusinessHome.aspx", true);
             }
+                
+           
             catch (Exception)
             {
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "basicModal", "$('#basicModal').modal();", true);

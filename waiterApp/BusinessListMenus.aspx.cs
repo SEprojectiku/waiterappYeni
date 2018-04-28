@@ -21,7 +21,7 @@ namespace waiterApp
         }
         private void fill()
         {
-            DataSet ds = filldropdownlist.listMenus(1); // 1 yerine session dan gelen veri yazolacak -- seçilen restoranın numarası
+            DataSet ds = filldropdownlist.listMenus(Convert.ToInt32(Session["bID"].ToString())); // 1 yerine session dan gelen veri yazolacak -- seçilen restoranın numarası
             pagesource = new PagedDataSource();
             pagesource.DataSource = ds.Tables[0].DefaultView;
             pagesource.PageSize = 10;
