@@ -67,24 +67,6 @@ namespace waiterApp {
         protected global::System.Web.UI.WebControls.DropDownList SelectState;
         
         /// <summary>
-        /// other control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button other;
-        
-        /// <summary>
-        /// location control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button location;
-        
-        /// <summary>
         /// SearchResID control.
         /// </summary>
         /// <remarks>

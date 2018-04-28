@@ -94,8 +94,8 @@
                 <asp:DropDownList ID="SelectState"  class="form-control" style="float:left;" Width="30%"  runat="server" >
                     <asp:ListItem Value="0">Type a City or Country Name</asp:ListItem>
                     </asp:DropDownList>
-                <asp:Button runat="server" ID="other" CssClass="btn btn-primary" OnClick="other_Click" Text="Find other locations" Visible="false"/>
-                <asp:Button runat="server" ID="location" Text="My location" CssClass="btn btn-primary col-lg-offset-1" OnClick="location_Click"/>
+<%--                <asp:Button runat="server" ID="other" CssClass="btn btn-primary" OnClick="other_Click" Text="Find other locations" Visible="false"/>
+                <asp:Button runat="server" ID="location" Text="My location" CssClass="btn btn-primary col-lg-offset-1" OnClick="location_Click"/>--%>
 
                     <asp:Button ID="SearchResID" Text="Search" style="float:right; " runat="server" class="btn btn-primary" OnClick="SearchResID_Click"/>
                 <asp:TextBox id="SearchBox" class="form-control" style="float:right; "  Width="40%" runat="server" />

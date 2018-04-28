@@ -75,11 +75,11 @@ namespace waiterApp
 
         protected void Buttons_Click(object sender, EventArgs e)
         {
-            string city;
-            if (locati != null)
-                city = locati;
-            else
-                city = SelectState.SelectedItem.Value;
+            //string city;
+            //if (locati != null)
+            //    city = locati;
+            //else
+            //    city = SelectState.SelectedItem.Value;
 
 
             string searchbar = SearchBox.Text;
@@ -122,51 +122,51 @@ namespace waiterApp
         {
 
         }
-        static string loc = null;
-        static string loc1 = null;
-        static string loc2 = null;
-        protected void location_Click(object sender, EventArgs e)
-        {
+        //static string loc = null;
+        //static string loc1 = null;
+        //static string loc2 = null;
+        //protected void location_Click(object sender, EventArgs e)
+        //{
             
-            XmlTextReader rd = new XmlTextReader("http://ip-api.com/xml");
-            while (rd.Read())
-            {
-                if (rd.NodeType == XmlNodeType.Element)
-                {
+        //    XmlTextReader rd = new XmlTextReader("http://ip-api.com/xml");
+        //    while (rd.Read())
+        //    {
+        //        if (rd.NodeType == XmlNodeType.Element)
+        //        {
                    
-                    if (rd.Name == "country")
-                    {
-                        rd.Read();
-                        loc1 = rd.Value.ToString();
-                    }
-                    if (rd.Name == "city")
-                    {
-                        rd.Read();
-                         loc2= rd.Value.ToString();
+        //            if (rd.Name == "country")
+        //            {
+        //                rd.Read();
+        //                loc1 = rd.Value.ToString();
+        //            }
+        //            if (rd.Name == "city")
+        //            {
+        //                rd.Read();
+        //                 loc2= rd.Value.ToString();
 
 
                         
-                    }
+        //            }
                  
 
-                }
-            }
-            loc = loc2 + "," + loc1;
+        //        }
+        //    }
+        //    loc = loc2 + "," + loc1;
 
 
-            locati = SelectState.Items.FindByText(loc).Value;
-            location.Text = loc;
-            other.Visible = true;
-            SelectState.Visible = false;
-        }
+        //    locati = SelectState.Items.FindByText(loc).Value;
+        //    location.Text = loc;
+        //    other.Visible = true;
+        //    SelectState.Visible = false;
+        //}
 
-        protected void other_Click(object sender, EventArgs e)
-        {
-            other.Visible = false;
-            SelectState.Visible = true;
-            location.Text = "My location";
-            locati = null;
-        }
+        //protected void other_Click(object sender, EventArgs e)
+        //{
+        //    other.Visible = false;
+        //    SelectState.Visible = true;
+        //    location.Text = "My location";
+        //    locati = null;
+        //}
 
         /*  protected void Hightlow_Click(object sender, EventArgs e)
           {
