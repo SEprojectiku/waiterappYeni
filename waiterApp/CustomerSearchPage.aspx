@@ -122,7 +122,7 @@
                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                <ContentTemplate>
-                   <asp:Panel ID="Panel1" runat="server" Width="20%" style="float:left;" class="panel panel-primary">
+                   <asp:Panel ID="Panel1" runat="server" Width="100%" style="float:left;" class="panel panel-primary">
                      <%--  <h3>Filters</h3>
                        <asp:LinkButton ID="Hightlow" runat="server" OnClick="Hightlow_Click">Cost-High to Low</asp:LinkButton>
                         <br/>
@@ -141,7 +141,7 @@
                        
                    </asp:Panel>
 
-                   <asp:Panel ID="Panel2" runat="server" Width="80%" style="float:right;">
+                   <asp:Panel ID="Panel2" runat="server" Width="100%" style="float:right;">
                 <asp:Repeater ID="BusinessList" runat="server" OnItemDataBound="BusinessList_ItemDataBound" OnItemCommand="BusinessList_ItemCommand">
                   <ItemTemplate>
                     <div class="bs-calltoaction bs-calltoaction-default" style="width:100%;">
