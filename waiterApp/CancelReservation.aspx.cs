@@ -78,9 +78,11 @@ namespace waiterApp
                     Server.Transfer("CutomerProfilePage.aspx", true);
                 }
                 else cancelbutton.Text = "ödeme yok";
+                insert.CancelRes(Convert.ToInt32(Session["resID"].ToString()));
                 Server.Transfer("CutomerProfilePage.aspx", true);
             }
              else cancelbutton.Text = "ödeme yok";
+            insert.CancelRes(Convert.ToInt32(Session["resID"].ToString()));
             Server.Transfer("CutomerProfilePage.aspx", true);
         }
     }
