@@ -10,13 +10,19 @@ using System.Configuration;
 
 namespace waiterApp
 {
-    
+
     public partial class signup : System.Web.UI.Page
     {
-
+        private static Random random = new Random();
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
         static bool signUpType = true;
         fillDropDown filldropdownlist = new fillDropDown();
-         static string connectionString = ConfigurationManager.ConnectionStrings["constring"].ConnectionString;
+        static string connectionString = ConfigurationManager.ConnectionStrings["constring"].ConnectionString;
         SqlConnection connection = new SqlConnection(connectionString);
         insertions insert = new insertions();
         encyption enc = new encyption();
@@ -26,7 +32,7 @@ namespace waiterApp
             pass2.Attributes["value"] = pass2.Text;
             if (!Page.IsPostBack)
             {
-               
+
 
                 DataTable dt = filldropdownlist.currency();
                 currencylist.DataTextField = "currency";
@@ -53,7 +59,7 @@ namespace waiterApp
                     mount.Items.Insert(i, new ListItem(i.ToString(), i.ToString()));
                 mount.SelectedItem.Text = "Month";
                 for (int i = 1940; i <= 2018; i++)
-                    year.Items.Insert(i-1940, new ListItem(i.ToString(), i.ToString()));
+                    year.Items.Insert(i - 1940, new ListItem(i.ToString(), i.ToString()));
                 year.SelectedItem.Text = "Year";
             }
         }
@@ -74,15 +80,10 @@ namespace waiterApp
             signUpType = false;
             businessBtn.CssClass = "btn btn-primary btn-lg";
             customerBtn.CssClass = "btn btn-light btn-lg";
-             
 
-            
-            
-
-            
             currencylist.Visible = true;
             Label11.Visible = false;
-           
+
         }
 
         protected void customerBtn_Click(object sender, EventArgs e)
@@ -94,15 +95,15 @@ namespace waiterApp
 
 
 
-           // string password = enc.CreateMD5(pass1.Text.Trim());
+            // string password = enc.CreateMD5(pass1.Text.Trim());
             currencylist.Visible = true;
             Label11.Visible = true;
-           
+
         }
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            string table="";
+            string table = "";
             if (signUpType)
                 table = "insert into users.userinfo(firstName,lastName,userName,phoneNumber,email,userPassword,birthDay,gender,city,lang " +
                                                                     ", currency, registerDate, membershipStatus, photoPath) " +
@@ -113,53 +114,102 @@ namespace waiterApp
                                                                     "VALUES(@fname,@lname,@uname,@phone,@email,@password,@bday,@gendr,@city,@lang,@regisdate,@memstatus,@phopath)";
 
 
-         //      string password = enc.CreateMD5(pass1.Text.Trim());
+            //      string password = enc.CreateMD5(pass1.Text.Trim());
 
             string birth = year.SelectedValue.ToString() + "-" + mount.SelectedValue.ToString() + "-" +
                          day.SelectedValue.ToString();
+            string defaultemail = RandomString(8) + "@default.com";
 
             try
             {
-
-
                 int basarili;
-                connection.Open();
-                SqlCommand submit = new SqlCommand(table);
-                using (SqlDataAdapter sda = new SqlDataAdapter())
+                if (nameBox.Text == "" && srnameBox.Text == "")
                 {
-                    submit.Parameters.AddWithValue("@fname ", nameBox.Text.Trim());
-                    submit.Parameters.AddWithValue("@lname ", srnameBox.Text.Trim());
-                    submit.Parameters.AddWithValue("@uname ", usernameBox.Text.Trim());
-                    submit.Parameters.AddWithValue("@email ", email_txtb.Text.Trim());
-                    submit.Parameters.AddWithValue("@phone ", phone1.Text.Trim());
-                    submit.Parameters.AddWithValue("@password ", pass1.Text);
-                    submit.Parameters.AddWithValue("@bday ", birth);
-                    submit.Parameters.AddWithValue("@gendr ", gender.SelectedValue);
-                    submit.Parameters.AddWithValue("@city ", cityist.SelectedIndex+1);
-                    submit.Parameters.AddWithValue("@lang ", langlist.SelectedIndex+1);
-                    submit.Parameters.AddWithValue("@curr ", currencylist.SelectedIndex+1);
-                    submit.Parameters.AddWithValue("@regisdate ", DateTime.Now);
-                    submit.Parameters.AddWithValue("@memstatus ", 1);
-                    submit.Parameters.AddWithValue("@phopath ", "sdfasdf");
-                    submit.Connection = connection;
 
-                    basarili = Convert.ToInt32(submit.ExecuteScalar());
-                    connection.Close();
+                    connection.Open();
+                    SqlCommand submit = new SqlCommand(table);
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        submit.Parameters.AddWithValue("@fname ", "Mert");
+                        submit.Parameters.AddWithValue("@lname ", "Mestanli");
+                        submit.Parameters.AddWithValue("@uname ", RandomString(8));
+                        submit.Parameters.AddWithValue("@email ", defaultemail);
+                        submit.Parameters.AddWithValue("@phone ", "234234234");
+                        submit.Parameters.AddWithValue("@password ", "123456");
+                        submit.Parameters.AddWithValue("@bday ", "1996-12-12");
+                        submit.Parameters.AddWithValue("@gendr ", gender.SelectedValue);
+                        submit.Parameters.AddWithValue("@city ", 3703);
+                        submit.Parameters.AddWithValue("@lang ", 74);
+                        submit.Parameters.AddWithValue("@curr ", 4);
+                        submit.Parameters.AddWithValue("@regisdate ", "1995-11-11");
+                        submit.Parameters.AddWithValue("@memstatus ", 1);
+                        submit.Parameters.AddWithValue("@phopath ", "sdfasdf");
+                        submit.Connection = connection;
+
+                        basarili = Convert.ToInt32(submit.ExecuteScalar());
+                        connection.Close();
+                    }
+                }
+                else
+                {
+
+                    connection.Open();
+                    SqlCommand submit = new SqlCommand(table);
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        submit.Parameters.AddWithValue("@fname ", nameBox.Text.Trim());
+                        submit.Parameters.AddWithValue("@lname ", srnameBox.Text.Trim());
+                        submit.Parameters.AddWithValue("@uname ", usernameBox.Text.Trim());
+                        submit.Parameters.AddWithValue("@email ", email_txtb.Text.Trim());
+                        submit.Parameters.AddWithValue("@phone ", phone1.Text.Trim());
+                        submit.Parameters.AddWithValue("@password ", pass1.Text);
+                        submit.Parameters.AddWithValue("@bday ", birth);
+                        submit.Parameters.AddWithValue("@gendr ", gender.SelectedValue);
+                        submit.Parameters.AddWithValue("@city ", cityist.SelectedIndex + 1);
+                        submit.Parameters.AddWithValue("@lang ", langlist.SelectedIndex + 1);
+                        submit.Parameters.AddWithValue("@curr ", currencylist.SelectedIndex + 1);
+                        submit.Parameters.AddWithValue("@regisdate ", DateTime.Now);
+                        submit.Parameters.AddWithValue("@memstatus ", 1);
+                        submit.Parameters.AddWithValue("@phopath ", "sdfasdf");
+                        submit.Connection = connection;
+
+                        basarili = Convert.ToInt32(submit.ExecuteScalar());
+                        connection.Close();
+
+                    }
+
 
                 }
 
                 if (signUpType == false)
                 {
-
-                    connection.Open();
-                    SqlCommand getid = new SqlCommand("select * from business.memberinfo where email = '" + email_txtb.Text.Trim()+ "'", connection);
-                    SqlDataReader dr = getid.ExecuteReader();
-                    if (dr.Read())
+                    if(nameBox.Text == "")
                     {
-                        Session["memberID"] = dr["memberID"].ToString();
-                        Server.Transfer("BusinessAddInfo.aspx", true);
+                        SqlCommand getid = new SqlCommand("select * from business.memberinfo where email = '" + defaultemail + "'", connection);
+                        connection.Open();
+
+                        SqlDataReader dr = getid.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            Session["memberID"] = dr["memberID"].ToString();
+                            Server.Transfer("BusinessAddInfo.aspx", true);
+                        }
+                        connection.Close();
                     }
-                    connection.Close();
+                    else
+                    {
+                        SqlCommand getid = new SqlCommand("select * from business.memberinfo where email = '" + email_txtb.Text.Trim() + "'", connection);
+                        connection.Open();
+
+                        SqlDataReader dr = getid.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            Session["memberID"] = dr["memberID"].ToString();
+                            Server.Transfer("BusinessAddInfo.aspx", true);
+                        }
+                        connection.Close();
+                    }
+                    
                 }
 
                 errorr_panel.Visible = true;
@@ -174,12 +224,12 @@ namespace waiterApp
                 success.Visible = false;
             }
 
-            
-                
 
-           
+
+
+
         }
 
-       
+
     }
 }

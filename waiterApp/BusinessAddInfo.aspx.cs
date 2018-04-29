@@ -89,35 +89,76 @@ namespace waiterApp
         {
             try
             {
-
                 int basarili;
-                connection.Open();
-                SqlCommand submit = new SqlCommand("insert  business.Businessinfo(bName,bdesc,city,establishedYear,registerDate,phone1,phone2,email,lat,lng " +
-                                                                    ", avaragePrice, tableNumber, workOpen, workClose,memberID) " +
-                                                                    "VALUES(@bName,@bdesc,@city,@establishedYear,@registerDate,@phone1,@phone2,@email,@lat,@lng,@avaragePrice,@tableNumber, @workOpen,@workClose,@memberID)");
-                using (SqlDataAdapter sda = new SqlDataAdapter())
+                if(bname.Text == "" && bdesc.Text == "")
                 {
-                    submit.Parameters.AddWithValue("@bName ", bname.Text );
-                    submit.Parameters.AddWithValue("@bdesc ", bdesc.Text);
-                   
-                    submit.Parameters.AddWithValue("@city ", cityist.SelectedValue);
-                    submit.Parameters.AddWithValue("@establishedYear ", 1234);
-                    submit.Parameters.AddWithValue("@registerDate ","1995-11-11");
-                    submit.Parameters.AddWithValue("@phone1 ", p1.Text);
-                    submit.Parameters.AddWithValue("@phone2 ", p2.Text);
-                    submit.Parameters.AddWithValue("@email ", email.Text);
-                    submit.Parameters.AddWithValue("@lat ", currencylist.SelectedIndex + 1);
-                    submit.Parameters.AddWithValue("@lng ", langlist.SelectedIndex + 1);
-                    submit.Parameters.AddWithValue("@avaragePrice ", avg.Text);
-                    submit.Parameters.AddWithValue("@tableNumber ", 1);
-                    submit.Parameters.AddWithValue("@workOpen ", wopen.Text);
-                    submit.Parameters.AddWithValue("@workClose ", wclose.Text);
-                    submit.Parameters.AddWithValue("@memberID ", Session["memberID"].ToString());
-                    submit.Connection = connection;
+                    
+                    connection.Open();
+                    SqlCommand submit = new SqlCommand("insert  business.Businessinfo(bName,bdesc,city,establishedYear,registerDate,phone1,phone2,email,lat,lng " +
+                                                                        ", avaragePrice, tableNumber, workOpen, workClose,memberID,currency,lang) " +
+                                                                        "VALUES(@bName,@bdesc,@city,@establishedYear,@registerDate,@phone1,@phone2,@email,@lat,@lng,@avaragePrice,@tableNumber, @workOpen,@workClose,@memberID,@currency,@lang)");
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        submit.Parameters.AddWithValue("@bName ", "Mestanli Ocakbaşı");
+                        submit.Parameters.AddWithValue("@bdesc ", "kebap, lahmacun, pide");
 
-                    basarili = Convert.ToInt32(submit.ExecuteScalar());
-                    connection.Close();
+                        submit.Parameters.AddWithValue("@city ", 3703);
+                        submit.Parameters.AddWithValue("@establishedYear ", 1960);
+                        submit.Parameters.AddWithValue("@registerDate ", "1995-11-11");
+                        submit.Parameters.AddWithValue("@phone1 ", "123123123");
+                        submit.Parameters.AddWithValue("@phone2 ", "");
+                        submit.Parameters.AddWithValue("@email ", "mestanlires@gmail.com");
+                        submit.Parameters.AddWithValue("@lat ", "6.0123");
+                        submit.Parameters.AddWithValue("@lng ", "7.4234");
+                        submit.Parameters.AddWithValue("@avaragePrice ", "60");
+                        submit.Parameters.AddWithValue("@tableNumber ", 20);
+                        submit.Parameters.AddWithValue("@workOpen ", "10");
+                        submit.Parameters.AddWithValue("@workClose ", "24");
+                        submit.Parameters.AddWithValue("@memberID ", Session["memberID"].ToString());
+                        submit.Parameters.AddWithValue("@currency ", "2");
+                        submit.Parameters.AddWithValue("@lang ", "74");
+                        submit.Connection = connection;
+
+                        basarili = Convert.ToInt32(submit.ExecuteScalar());
+                        connection.Close();
+                    }
                 }
+                else
+                {
+                    connection.Open();
+                    SqlCommand submit = new SqlCommand("insert  business.Businessinfo(bName,bdesc,city,establishedYear,registerDate,phone1,phone2,email,lat,lng " +
+                                                                        ", avaragePrice, tableNumber, workOpen, workClose,memberID,currency,lang) " +
+                                                                        "VALUES(@bName,@bdesc,@city,@establishedYear,@registerDate,@phone1,@phone2,@email,@lat,@lng,@avaragePrice,@tableNumber, @workOpen,@workClose,@memberID,@currency,@lang)");
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        submit.Parameters.AddWithValue("@bName ", bname.Text);
+                        submit.Parameters.AddWithValue("@bdesc ", bdesc.Text);
+
+                        submit.Parameters.AddWithValue("@city ", cityist.SelectedValue);
+                        submit.Parameters.AddWithValue("@establishedYear ", 1234);
+                        submit.Parameters.AddWithValue("@registerDate ", DateTime.Now);
+                        submit.Parameters.AddWithValue("@phone1 ", p1.Text);
+                        submit.Parameters.AddWithValue("@phone2 ", p2.Text);
+                        submit.Parameters.AddWithValue("@email ", email.Text);
+                        submit.Parameters.AddWithValue("@lat ", lat.Text);
+                        submit.Parameters.AddWithValue("@lng ", lng.Text);
+                        submit.Parameters.AddWithValue("@avaragePrice ", avg.Text);
+                        submit.Parameters.AddWithValue("@tableNumber ", 1);
+                        submit.Parameters.AddWithValue("@workOpen ", wopen.Text);
+                        submit.Parameters.AddWithValue("@workClose ", wclose.Text);
+                        submit.Parameters.AddWithValue("@memberID ", Session["memberID"].ToString());
+                        submit.Parameters.AddWithValue("@currency ", currencylist.SelectedIndex + 1);
+                        submit.Parameters.AddWithValue("@lang ", langlist.SelectedIndex + 1);
+                        submit.Connection = connection;
+
+                        basarili = Convert.ToInt32(submit.ExecuteScalar());
+                        connection.Close();
+                    }
+                }
+
+
+                if (email.Text == "") email.Text = "mestanlires@gmail.com";
+
 
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "basicModal", "$('#basicModal').modal();", true);
                 success.Visible = true; fail.Visible = false;
@@ -137,7 +178,7 @@ namespace waiterApp
 
                 }
                 Response.AddHeader("REFRESH", "3;URL=BusinessHome.aspx");
-                //Server.Transfer("BusinessHome.aspx", true);
+                Server.Transfer("BusinessHome.aspx", true);
             }
             catch (Exception)
             {
