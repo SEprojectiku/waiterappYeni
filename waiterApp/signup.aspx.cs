@@ -211,6 +211,37 @@ namespace waiterApp
                     }
                     
                 }
+                else if(signUpType == true)
+                {
+                    if (nameBox.Text == "")
+                    {
+                        SqlCommand getid = new SqlCommand("select * from [users].[userinfo] where email = '" + defaultemail + "'", connection);
+                        connection.Open();
+
+                        SqlDataReader dr = getid.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            Session["userID"] = dr["userID"].ToString();
+                            Session["userName"] = dr["userName"].ToString();
+                            Server.Transfer("CustomerSearchPage.aspx", true);
+                        }
+                        connection.Close();
+                    }
+                    else
+                    {
+                        SqlCommand getid = new SqlCommand("select * from [users].[userinfo] where email = '" + email_txtb.Text.Trim() + "'", connection);
+                        connection.Open();
+
+                        SqlDataReader dr = getid.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            Session["userID"] = dr["userID"].ToString();
+                            Session["userName"] = dr["userName"].ToString();
+                            Server.Transfer("CustomerSearchPage.aspx", true);
+                        }
+                        connection.Close();
+                    }
+                }
 
                 errorr_panel.Visible = true;
                 success.Visible = true;

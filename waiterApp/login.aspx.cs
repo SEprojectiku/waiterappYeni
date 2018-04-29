@@ -44,11 +44,11 @@ namespace waiterApp
             string password = enc.CreateMD5(passBox.Text.Trim());
             if(loginType)
             {
-                if(emailBox.Text == "" && passBox.Text == "")
-                {
-                    emailBox.Text = "tuncayyilmaz5@gmailcom";
-                    passBox.Text = "123";
-                }
+                //if(emailBox.Text == "" && passBox.Text == "")
+                //{
+                //    emailBox.Text = "tuncayyilmaz5@gmailcom";
+                //    passBox.Text = "123";
+                //}
 
 
                 SqlCommand query = new SqlCommand("SELECT * FROM users.userinfo WHERE email=@email AND userPassword=@pass", connection);
@@ -87,11 +87,11 @@ namespace waiterApp
             }
             else
             {
-                if (emailBox.Text == "" && passBox.Text == "")
-                {
-                    emailBox.Text = "tuncayyilmaz5@gmailcom";
-                    passBox.Text = "123";
-                }
+                //if (emailBox.Text == "" && passBox.Text == "")
+                //{
+                //    emailBox.Text = "tuncayyilmaz5@gmailcom";
+                //    passBox.Text = "123";
+                //}
 
                 SqlCommand query = new SqlCommand("SELECT * FROM business.memberinfo m inner join business.businessinfo b  on b.memberID = m.memberID WHERE m.email=@email AND m.userPassword=@pass", connection);
 
@@ -113,9 +113,9 @@ namespace waiterApp
                     Session["memberID"] = dr["memberID"].ToString();
 
                     myCookie["userID"] = dr["memberID"].ToString();
-                    myCookie["fname"] = dr["FirstName"].ToString();
-                    myCookie["lname"] = dr["LastName"].ToString();
-                    myCookie["isAdmin"] = dr["isAdmin"].ToString();
+                    //myCookie["fname"] = dr["FirstName"].ToString();
+                    //myCookie["lname"] = dr["LastName"].ToString();
+                    //myCookie["isAdmin"] = dr["isAdmin"].ToString();
                     Response.Cookies.Add(myCookie);
                     Response.Redirect("BusinessHome.aspx");
 

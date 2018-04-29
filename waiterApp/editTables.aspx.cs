@@ -36,7 +36,7 @@ namespace waiterApp
         protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand komut = new SqlCommand("SELECT * FROM [business].[tableinfo] ti inner join [dbo].[tableTypes] tt on ti.tableType = tt.typeID where tt.typeID=" + Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "typeID")), con);// işletmeye özel sorgu için businessID GİRİLECEK eKSİK
+            SqlCommand komut = new SqlCommand("SELECT * FROM [business].[tableinfo] ti inner join [dbo].[tableTypes] tt on ti.tableType = tt.typeID where ti.bID = '"+Session["bID"].ToString() +"' and tt.typeID=" + Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "typeID")), con);// işletmeye özel sorgu için businessID GİRİLECEK eKSİK
             con.Open();
             Repeater rp = (Repeater)e.Item.FindControl("Repeater2");
             rp.DataSource = komut.ExecuteReader();
