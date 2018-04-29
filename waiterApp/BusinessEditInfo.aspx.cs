@@ -50,13 +50,8 @@ namespace waiterApp
                 connection.Close();
 
 
-
-
                 SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
-
                 query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = Session["bID"].ToString();
-
-
                 connection.Open();
 
                 SqlDataReader dr = query.ExecuteReader();
@@ -78,7 +73,6 @@ namespace waiterApp
                     currencylist.SelectedValue = dr["currency"].ToString();
                     langlist.SelectedValue = dr["lang"].ToString();
                 }
-
             }
         }
 

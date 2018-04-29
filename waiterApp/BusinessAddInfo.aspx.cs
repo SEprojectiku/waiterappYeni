@@ -38,13 +38,8 @@ namespace waiterApp
                 countrylist.DataSource = dt3;
                 countrylist.DataBind();
 
-               
-
                 //SqlCommand query = new SqlCommand("SELECT * FROM business.businessinfo WHERE bID=@bid", connection);
-
                 //query.Parameters.Add("@bid", SqlDbType.NVarChar).Value = bID.ToString();
-
-
                 //connection.Open();
 
                 //SqlDataReader dr = query.ExecuteReader();
@@ -95,7 +90,6 @@ namespace waiterApp
             try
             {
 
-
                 int basarili;
                 connection.Open();
                 SqlCommand submit = new SqlCommand("insert  business.Businessinfo(bName,bdesc,city,establishedYear,registerDate,phone1,phone2,email,lat,lng " +
@@ -132,9 +126,7 @@ namespace waiterApp
 
                 query.Parameters.Add("@email", SqlDbType.NVarChar).Value = email.Text;
 
-
                 connection.Open();
-
                 SqlDataReader dr = query.ExecuteReader();
                 if (dr.Read())
                 {
@@ -147,8 +139,6 @@ namespace waiterApp
                 Response.AddHeader("REFRESH", "3;URL=BusinessHome.aspx");
                 //Server.Transfer("BusinessHome.aspx", true);
             }
-                
-           
             catch (Exception)
             {
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "basicModal", "$('#basicModal').modal();", true);

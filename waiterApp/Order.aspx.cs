@@ -38,7 +38,7 @@ namespace waiterApp
 
               //  myName.Text = Session["bName"].ToString();
                 navbarname.Text = Session["userName"].ToString();
-                Repeater2.DataSource = fdp.listActiveMenuitems(1);
+                Repeater2.DataSource = fdp.listActiveMenuitems(Convert.ToInt32(Session["bID"].ToString()));
                 Repeater2.DataBind();
 
                 //DataList1.DataSource = fdp.listActiveMenuitems(1);

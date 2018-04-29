@@ -29,7 +29,7 @@ namespace waiterApp
             }
             connection.Close();
 
-            Repeater1.DataSource = fdp.tableTypes(1);
+            Repeater1.DataSource = fdp.tableTypes(Convert.ToInt32(Session["bID"].ToString()));
                 Repeater1.DataBind();
 
         }

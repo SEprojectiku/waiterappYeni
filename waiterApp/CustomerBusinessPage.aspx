@@ -1,4 +1,4 @@
-﻿ü<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustomerBusinessPage.aspx.cs" Inherits="waiterApp.CustomerBusinessPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CustomerBusinessPage.aspx.cs" Inherits="waiterApp.CustomerBusinessPage" %>
 
 <!DOCTYPE html>
 
