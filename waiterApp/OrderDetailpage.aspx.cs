@@ -19,7 +19,7 @@ namespace waiterApp
             if (!IsPostBack)
             {
 
-                Repeater1.DataSource = filldropdownlist.getOrderDetailsForBusiness(35,1); //session yazılacak
+                Repeater1.DataSource = filldropdownlist.getOrderDetailsForBusiness(Convert.ToInt32(Session["orderID"].ToString()),Convert.ToInt32(Session["bID"].ToString())); //session yazılacak
                 Repeater1.DataBind();
 
                 SqlCommand query = new SqlCommand("	select o.orderDate, o.orderID, o.bID, o.userID, u.userName, o.tableID, t.tName, md.foodbeveragesName, od.piece, md.price, (od.piece * md.price) as semitotal from[orders].[orders] o inner join[orders].[orderDetails] od on o.orderID = od.orderID inner join[business].[menudetails] md on md.foodbeveragesID = od.foodbeveragesID inner join[users].[userinfo] u on u.userID = o.userID inner join[business].[tableinfo] t on t.tID = o.tableID where o.orderID = @orderid", connection);

@@ -35,7 +35,7 @@ namespace waiterApp
 
               
 
-                myName.Text = Session["userID"].ToString();
+                myName.Text = Session["userName"].ToString();
                 navbarname.Text = Session["userName"].ToString();
             }
         }
